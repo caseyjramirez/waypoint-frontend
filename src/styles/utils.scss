@@ -1,0 +1,128 @@
+@use './variables.scss';
+
+// MARGIN
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mx-30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mx-20 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.mx-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    label {
+        color: $text-grey;
+    }
+
+    input {
+        border: .5px solid $dec-grey;
+        border-radius: 3px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    
+    input, textarea, select { 
+        color: $black;
+        outline: none;
+    }
+    
+    ::placeholder {
+        color: $text-grey;
+    }
+    
+    .error-message {
+        font-size: .85rem;
+        color: $dark-red;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .error-input {
+        border: .75px solid $dark-red;
+    }
+
+}
+
+.btn {
+    background-color: $cream;
+    font-size: 1rem;
+    border: .5px solid $black;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.btn-xl {
+    border-radius: 7px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn-right {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: auto;
+}
+
+.btn-dark {
+    background-color: $white;
+    border: .5px solid $black;
+    color: $black;
+
+}
+
+.btn-dark-hover {
+    transition: $transition-duration;
+}
+
+.btn-dark-hover:hover {
+    background-color: $black;
+    color: $white;
+
+}
+
+.fix-bottom {
+    position: fixed;
+    bottom: 20px;
+}

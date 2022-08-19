@@ -1,0 +1,83 @@
+@import './reset.scss';
+@import './variables.scss';
+@import './utils.scss';
+@import './deco.scss';
+@import './login.scss';
+
+html {
+    font-family: $font;
+    color: $black;
+    letter-spacing: -.06rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: $text-grey;
+}
+
+// li {
+//     list-style: inside;
+// }
+
+.logo {
+    position: fixed;
+    mix-blend-mode: difference;
+    color: white;
+    right: 20px;
+    top: 20px;
+    z-index: 99;
+    font-size: 1.25rem;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.text-center {
+    width: 100%;
+    text-align: center;
+}
+
+.text-btn {
+    cursor: pointer;
+    text-decoration: underline;
+    transition: $transition-duration;
+}
+
+.text-btn:hover {
+    color: $black
+}
+
+.center-children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stick-right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.hidden {
+    visibility: hidden;
+}

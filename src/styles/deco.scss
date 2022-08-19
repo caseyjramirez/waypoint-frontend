@@ -1,0 +1,18 @@
+@use './variables.scss';
+
+.deco-line-400 {
+    width: 400px;
+    height: .75px;
+    background-color: $dec-grey;
+    position: relative;
+}
+
+.next-arrow {
+    margin-left: 10px;
+    margin-bottom: .05rem;
+}
+
+.back-arrow {
+    margin-right: 10px;
+    margin-bottom: .05rem;
+}
