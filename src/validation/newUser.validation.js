@@ -7,10 +7,10 @@ const joiOptions = {abortEarly: false, errors: {label: 'key', wrap: {label: fals
 /*
 =============== Setting Messages ===============
 */
-function nameValidationMessages(variable) {
+function stringValidationMessages(variable, minLength, maxLength) {
     return {
-        "string.min": `${variable} must be at least 3 characters long.`,
-        "string.max": `${variable} must be under 50 characters long.`,
+        "string.min": `${variable} must be at least ${minLength} characters long.`,
+        "string.max": `${variable} must be under ${maxLength} characters long.`,
         "string.required": `${variable} is required.`,
         "string.string": `${variable} must be a string.`,
     }
@@ -20,13 +20,13 @@ function nameValidationMessages(variable) {
 =============== Setting Schemas ===============
 */
 const nameSchema = Joi.object({
-    firstName: Joi.string().min(3).max(30).required().label("First Name").messages(nameValidationMessages('First Name')),
-    lastName: Joi.string().min(3).max(30).required().label("Last Name").messages(nameValidationMessages('Last Name'))
+    firstName: Joi.string().min(3).max(30).required().label("First Name").messages(stringValidationMessages('First Name', 3, 30)),
+    lastName: Joi.string().min(3).max(30).required().label("Last Name").messages(stringValidationMessages('Last Name', 3, 30))
 })
 
 const jobSchema = Joi.object({
-    jobTitle: Joi.string().min(3).max(30).required().label("Job Title").messages(nameValidationMessages('Job Title')),
-    company: Joi.string().min(3).max(30).required().label("Company").messages(nameValidationMessages('Company'))
+    jobTitle: Joi.string().min(3).max(60).required().label("Job Title").messages(stringValidationMessages('Job Title', 3, 60)),
+    company: Joi.string().min(3).max(60).required().label("Company").messages(stringValidationMessages('Company', 3, 60))
 })
 
 const loginInfoSchema = Joi.object({
