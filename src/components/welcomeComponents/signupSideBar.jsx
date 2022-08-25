@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { validateLoginInfo } from "../../validation/newUser.validation";
-
+import { createResource, getResource } from "../../services/services";
+import { userAPI } from "../../services/url";
 import YourselfContent from "./yourselfContent";
 import JobContent from "./jobContent";
 import LoginContent from "./loginContent";
+
+import axios from "axios";
 
 function SignupContent() {
     const [firstName, setFirstName] = useState('');
@@ -21,7 +24,7 @@ function SignupContent() {
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setPasswordError('');
         setEmailError('');
@@ -40,16 +43,10 @@ function SignupContent() {
             setConfirmPasswordError('Passwords do not match');
         }
 
-        const newUser = {
-            firstName,
-            lastName,
-            jobTitle,
-            company,
-            email,
-            password
-        }
+        const newUser = { firstName, lastName, jobTitle, company, email, password }
 
-        console.log(newUser);
+        const data = await createResource(userAPI, newUser)
+        console.log(data);
     }
 
 

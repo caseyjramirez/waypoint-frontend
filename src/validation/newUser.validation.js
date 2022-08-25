@@ -7,6 +7,7 @@ const joiOptions = {abortEarly: false, errors: {label: 'key', wrap: {label: fals
 /*
 =============== Setting Messages ===============
 */
+
 function stringValidationMessages(variable, minLength, maxLength) {
     return {
         "string.min": `${variable} must be at least ${minLength} characters long.`,
