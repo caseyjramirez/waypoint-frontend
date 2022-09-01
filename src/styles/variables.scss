@@ -18,8 +18,16 @@ $font: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
 $transition-duration: .25s;
 
 $border-radius-sm: 3px;
+$border-radius: 5px;
 $border-radius-lg: 7px;
+$border: .5px solid $dec-grey;
+$border-thick: 1px solid $dec-grey;
 
 // pm (padding and margin space)
+$pm-space-sm: 5px;
 $pm-space: 10px;
 $pm-space-lg: 20px;
+$pm-space-xl: 30px;
+$pm-space-xxl: 40px;
+
+$sidebar-width: 240px;

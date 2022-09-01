@@ -3,7 +3,7 @@
 // MARGIN
 
 .mb-30 {
-    margin-bottom: 30px;
+    margin-bottom: $pm-space-xl;
 }
 
 .mb-20 {
@@ -12,6 +12,10 @@
 
 .mb-10 {
     margin-bottom: $pm-space;
+}
+
+.mb-5 {
+    margin-bottom: $pm-space-sm;
 }
 
 .mt-30 {
@@ -54,7 +58,7 @@
 
     input {
         border: .5px solid $dec-grey;
-        border-radius: 3px;
+        border-radius: $border-radius-sm;
         padding-top: $pm-space;
         padding-bottom: $pm-space;
         padding-left: $pm-space;
@@ -98,11 +102,11 @@
     font-size: 1rem;
     border: .5px solid $black;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: $border-radius-sm;
 }
 
 .btn-xl {
-    border-radius: 7px;
+    border-radius: $border-radius-lg;
     width: 100%;
     padding-top: $pm-space;
     padding-bottom: $pm-space;

@@ -1,5 +1,5 @@
 import LoginBackgroundVideo from '../components/welcomeComponents/login-bg-video';
-import Logo from '../components/logo';
+import Logo from '../components/reusables/logo';
 import { Outlet } from "react-router-dom";
 
 function WelcomePage() {

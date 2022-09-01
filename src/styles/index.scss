@@ -3,6 +3,7 @@
 @import './utils.scss';
 @import './deco.scss';
 @import './login.scss';
+@import './home.scss';
 
 html {
     font-family: $font;
@@ -81,4 +82,12 @@ p {
 
 .hidden {
     visibility: hidden;
+}
+
+.light-color {
+    color: $text-grey;
+}
+
+.dark-color {
+    color: $black;
 }

@@ -1,13 +1,17 @@
-const { testSessionData } = require('../services/services')
+import { testSessionData } from '../services/services';
+import SideBar from '../components/homeComponents/home.sidebar';
+import Feed from '../components/homeComponents/home.feed';
 
 function Home() {
+    
     function handleClick() {
         testSessionData()
     }
+    
     return (
         <div>
-            <h1>Welcome Home!</h1>
-            <button onClick={handleClick}>test me out!</button>
+            <SideBar />
+            <Feed />
         </div>
     );
 }
