@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginService } from '../../services/services'
 import FormInput from "../forms/formInput";
+import ServerError from "../forms/serverError";
 import WelcomeHeader from "./welcomeHeader";
 
 function LoginContent() {
@@ -8,13 +10,16 @@ function LoginContent() {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [serverError, setServerError] = useState('')
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+        setServerError('')
 
         const userLogin = {email, password}
-
-        console.log(userLogin);
+        const data = await loginService(userLogin)
+        if(data.response) return setServerError('Invalid Email or Password.');
+        navigate('/home')
     }
 
     return (
@@ -27,19 +32,23 @@ function LoginContent() {
                 <form onSubmit={(e) => handleSubmit(e)}>
                     
                     <FormInput 
-                    value={email}
-                    label={'Email'}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type={'text'}
-                    placeholder={'Enter your Email.'}
+                        value={email}
+                        label={'Email'}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type={'text'}
+                        placeholder={'Enter your Email.'}
                     />
 
                     <FormInput 
-                    value={password}
-                    label={'Password'}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type={'password'}
-                    placeholder={'Enter your Password.'}
+                        value={password}
+                        label={'Password'}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type={'password'}
+                        placeholder={'Enter your Password.'}
+                    />
+
+                    <ServerError 
+                        serverError={serverError}
                     />
 
                     <button className='btn btn-xl btn-dark btn-dark-hover mx-20' type='submit'>Login</button>

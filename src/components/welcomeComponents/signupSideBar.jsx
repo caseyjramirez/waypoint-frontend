@@ -51,7 +51,6 @@ function SignupContent() {
         const newUser = { firstName, lastName, jobTitle, company, email, password }
         const data = await createResource(userAPI, newUser)
 
-        console.log(data);
         if(data.response) return setServerError(data.response.data);
         navigate('/home')
     }
