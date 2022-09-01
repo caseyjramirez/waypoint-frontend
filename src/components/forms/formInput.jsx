@@ -1,8 +1,4 @@
 function FormInput({value, label, onChange, type, placeholder, error}) {
-    
-    function renderMessageClass() {
-        return error ? "" : "hidden";
-    }
 
     function renderInputClass() {
         return error ? 'form-control error-input' : 'form-control';
@@ -20,8 +16,8 @@ function FormInput({value, label, onChange, type, placeholder, error}) {
             placeholder={placeholder}
             />
             
-            <ul className={renderMessageClass()}>
-                <li className="error-message">{error}</li>
+            <ul>
+                {error && <li className="error-message">{error}</li>}
             </ul>
         </div>
     );

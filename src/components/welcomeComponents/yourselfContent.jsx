@@ -15,13 +15,15 @@ function YourselfContent({firstName, lastName, handleFirstNameChange, handleLast
     const [lastNameError, setLastNameError] = useState('')
     
     
+    
+    
     function validateUserInputs() {
             setFirstNameError('')
             setLastNameError('')
-            const error = validateName({firstName, lastName})
+            const {error} = validateName({firstName, lastName})
             
-            if(error.error) {
-                for(let errorMessage of error.error.details) {
+            if(error) {
+                for(let errorMessage of error.details) {
                     const path = errorMessage.path[0]
                     if(path === 'firstName') setFirstNameError(errorMessage.message)
                     if(path === 'lastName') setLastNameError(errorMessage.message)

@@ -50,6 +50,14 @@ function validateLoginInfo(obj) {
     return loginInfoSchema.validate(obj, joiOptions)
 }
 
+function validateNewUser(newUser) {
+    const {firstName, lastName, jobTitle, company} = newUser
+
+    const nameError = validateName({firstName, lastName})
+    const jobError = validateJob({jobTitle, company})
+    if(nameError.error || jobError.error) return true
+}
 
 
-export { validateName, validateJob, validateLoginInfo }
+
+export { validateName, validateJob, validateLoginInfo, validateNewUser }

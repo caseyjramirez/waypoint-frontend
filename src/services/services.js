@@ -1,12 +1,15 @@
 import axios from "axios";
 
 async function createResource(url, body) {
-    const response = await axios({
-        method: 'post',
-        url,
-        data: body
-    })
-    return response
+    try {
+        return await axios({
+            method: 'post',
+            url,
+            data: body
+        })
+    } catch (error) {
+        return error
+    }
 }
 
 async function getResource(url) {

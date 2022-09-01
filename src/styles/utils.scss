@@ -7,11 +7,11 @@
 }
 
 .mb-20 {
-    margin-bottom: 20px;
+    margin-bottom: $pm-space-lg;
 }
 
 .mb-10 {
-    margin-bottom: 10px;
+    margin-bottom: $pm-space;
 }
 
 .mt-30 {
@@ -19,11 +19,11 @@
 }
 
 .mt-20 {
-    margin-top: 20px;
+    margin-top: $pm-space-lg;
 }
 
 .mt-10 {
-    margin-top: 10px;
+    margin-top: $pm-space;
 }
 
 .mx-30 {
@@ -32,13 +32,13 @@
 }
 
 .mx-20 {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: $pm-space-lg;
+    margin-bottom: $pm-space-lg;
 }
 
 .mx-10 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: $pm-space;
+    margin-bottom: $pm-space;
 }
 
 
@@ -55,9 +55,9 @@
     input {
         border: .5px solid $dec-grey;
         border-radius: 3px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
+        padding-top: $pm-space;
+        padding-bottom: $pm-space;
+        padding-left: $pm-space;
     }
     
     input, textarea, select { 
@@ -72,14 +72,25 @@
     .error-message {
         font-size: .85rem;
         color: $dark-red;
-        margin-left: 10px;
-        margin-top: 10px;
+        margin-left: $pm-space;
+        margin-top: $pm-space;
     }
 
     .error-input {
         border: .75px solid $dark-red;
     }
+}
 
+.server-error-container {
+    border: .75px solid $dark-red;
+    border-radius: $border-radius-sm;
+    padding: $pm-space;
+    background-color: $light-red;
+    
+    p {
+        color: $dark-red;
+        font-size: .85rem;
+    }
 }
 
 .btn {
@@ -93,15 +104,15 @@
 .btn-xl {
     border-radius: 7px;
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: $pm-space;
+    padding-bottom: $pm-space;
 }
 
 .btn-right {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: $pm-space;
+    padding-bottom: $pm-space;
+    padding-left: $pm-space-lg;
+    padding-right: $pm-space-lg;
     width: auto;
 }
 
@@ -124,5 +135,5 @@
 
 .fix-bottom {
     position: fixed;
-    bottom: 20px;
+    bottom: $pm-space-lg;
 }

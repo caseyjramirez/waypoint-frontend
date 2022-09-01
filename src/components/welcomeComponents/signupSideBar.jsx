@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { validateLoginInfo } from "../../validation/newUser.validation";
-import { createResource, getResource } from "../../services/services";
+import { validateLoginInfo, validateNewUser } from "../../validation/newUser.validation";
+import { createResource } from "../../services/services";
 import { userAPI } from "../../services/url";
+import { useNavigate } from "react-router-dom";
 import YourselfContent from "./yourselfContent";
 import JobContent from "./jobContent";
 import LoginContent from "./loginContent";
 
-import axios from "axios";
-
 function SignupContent() {
+    const navigate = useNavigate();
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [jobTitle, setJobTitle] = useState('');
@@ -22,13 +23,19 @@ function SignupContent() {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [serverError, setServerError] = useState('');
 
 
     async function handleSubmit(e) {
         e.preventDefault();
+        
         setPasswordError('');
         setEmailError('');
         setConfirmPasswordError('');
+        setServerError('')
+
+        const newUserError = validateNewUser({firstName, lastName, jobTitle, company})
+        if(newUserError) return navigate('/signup')
 
         const error = validateLoginInfo({password, email})
         if(error.error) {
@@ -39,14 +46,14 @@ function SignupContent() {
             }
             return
         }
-        if(confirmPassword !== password) {
-            setConfirmPasswordError('Passwords do not match');
-        }
-
+        if(confirmPassword !== password) return setConfirmPasswordError('Passwords do not match');
+        
         const newUser = { firstName, lastName, jobTitle, company, email, password }
-
         const data = await createResource(userAPI, newUser)
+
         console.log(data);
+        if(data.response) return setServerError(data.response.data);
+        navigate('/home')
     }
 
 
@@ -86,11 +93,10 @@ function SignupContent() {
                     emailError={emailError}
                     passwordError={passwordError}
                     confirmPasswordError={confirmPasswordError}
+                    serverError={serverError}
                     />
                 }>
                 </Route>
-
-
 
             </Routes>
         </div>
