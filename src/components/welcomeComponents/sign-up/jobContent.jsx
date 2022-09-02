@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import WelcomeHeader from "./welcomeHeader";
-import FormInput from "../forms/formInput";
+import WelcomeHeader from "../welcomeHeader";
+import FormInput from "../../forms/formInput";
 import { useNavigate } from "react-router-dom";
-import { validateJob } from '../../validation/newUser.validation';
+import { validateJob } from '../../../validation/newUser.validation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'

@@ -12,6 +12,7 @@ function Feed() {
             <div className="feed-content">
                 <GreetingMessage/>
                 <TaskCard />
+                <TaskCard />
             </div>
 
         </div>

@@ -1,17 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-$black: #424242;
+$test-cream: #FFF6E3;
 $cream: #FFFEFC;
+
 $white: #FFFFFF;
 $text-grey: #C4C4C4;
 $dec-grey: #D9D9D9;
-$test-cream: #FFF6E3;
+$black: #424242;
 
 $dark-blue: #335DD4;
 $light-blue: #E7EFFF;
 
 $dark-red: #d47575;
 $light-red: #F9C8CA;
+
+$dark-yellow: #402C1B;
+$light-yellow: #FDECC8;
+
+$favorite-yellow: #F6C83C;
+$checked-blue: #0F75E0;
+
+$dark-green: #1C3829;
+$light-green: #DBECDB;
 
 
 $font: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
@@ -20,10 +30,13 @@ $transition-duration: .25s;
 $border-radius-sm: 3px;
 $border-radius: 5px;
 $border-radius-lg: 7px;
+
 $border: .5px solid $dec-grey;
 $border-thick: 1px solid $dec-grey;
+$border-green: .5px solid $dark-green;
 
 // pm (padding and margin space)
+$pm-space-xsm: 3px;
 $pm-space-sm: 5px;
 $pm-space: 10px;
 $pm-space-lg: 20px;
@@ -31,3 +44,5 @@ $pm-space-xl: 30px;
 $pm-space-xxl: 40px;
 
 $sidebar-width: 240px;
+$box-shadow: 0px 2px 9px -5px #00000040;
+$checkbox-box-shadow: 0px 2px 4px -2px #00000040;

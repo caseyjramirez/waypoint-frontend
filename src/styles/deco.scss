@@ -16,3 +16,17 @@
     margin-right: 10px;
     margin-bottom: .05rem;
 }
+
+.icon.favorite-star {
+    color: $text-grey;
+}
+
+.icon.favorite-star.favorite {
+    color: $favorite-yellow;
+}
+
+.icon.comment {
+    color: $text-grey;
+    margin-top: .05rem;
+    margin-right: .5rem;
+}

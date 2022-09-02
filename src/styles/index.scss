@@ -91,3 +91,14 @@ p {
 .dark-color {
     color: $black;
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-row-align-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: end; 
+}

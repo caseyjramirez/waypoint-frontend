@@ -1,7 +1,7 @@
 import React from 'react';
-import WelcomeHeader from './welcomeHeader';
-import FormInput from '../forms/formInput';
-import ServerError from '../forms/serverError';
+import WelcomeHeader from '../welcomeHeader';
+import FormInput from '../../forms/formInput';
+import ServerError from '../../forms/serverError';
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -28,8 +28,10 @@
     }
 }
 
+// ($sidebar-width + $pm-space-lg + $pm-space-lg + $pm-space-xxl)
+
 .home-feed {
-    width: calc(100vw - ($sidebar-width + $pm-space-lg + $pm-space-lg + $pm-space-xxl));
+    width: calc(100vw - ($sidebar-width + 80px));
     height: 100vh;
     // background-color: $light-red;
     margin-left: calc($sidebar-width + $pm-space-lg + $pm-space-lg);
@@ -47,10 +49,51 @@
     }
 }
 
+
 .task-card {
     max-width: 800px;
     width: calc(100%);
     background-color: $cream;
     border: $border-thick;
     border-radius: $border-radius;
+    padding: $pm-space-lg;
+    box-shadow: $box-shadow;
+    display: flex;
+    flex-direction: row;
+
+    .task-card-checkbox {
+        box-shadow: $checkbox-box-shadow;
+        width: 15px;
+        height: 15px;
+        border: $border-thick;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+    }
+
+    .task-card-content {
+        width: 100%;
+    }
+
+    .task-tag {
+        border-radius: $border-radius-sm;
+        padding: $pm-space-xsm;
+        display: inline-block;
+        cursor: pointer;
+
+        p {
+            font-size: .9rem;
+            display: inline-block;
+            
+        }
+    }
+}
+
+.tag-list {
+    width: 100%;
+    display: inline-block;
+    .green {
+        background-color: $light-green;
+        border: $border-green;
+        p { color: $dark-green; }
+    }
 }

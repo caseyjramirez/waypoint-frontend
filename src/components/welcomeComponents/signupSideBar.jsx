@@ -4,9 +4,9 @@ import { validateLoginInfo, validateNewUser } from "../../validation/newUser.val
 import { createResource } from "../../services/services";
 import { userAPI } from "../../services/url";
 import { useNavigate } from "react-router-dom";
-import YourselfContent from "./yourselfContent";
-import JobContent from "./jobContent";
-import LoginContent from "./loginContent";
+import YourselfContent from "./sign-up/yourselfContent";
+import JobContent from "./sign-up/jobContent";
+import LoginContent from "./sign-up/loginContent";
 
 function SignupContent() {
     const navigate = useNavigate();
