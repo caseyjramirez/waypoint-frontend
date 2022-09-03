@@ -10,11 +10,11 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Welcome />}>
-            <Route path="/" element={<LoginContent />}></Route>
-            <Route path="/signup/*" element={<SignupContent />}></Route>
-          </Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
+            <Route path="/welcome" element={<Welcome />}>
+              <Route path="login" element={<LoginContent />}></Route>
+              <Route path="signup/*" element={<SignupContent />}></Route>
+            </Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Router>

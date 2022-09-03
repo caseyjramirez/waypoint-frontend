@@ -62,7 +62,7 @@ function LoginContent({email, password, confirmPassword, handleEmailChange, hand
             </form>
 
             
-            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/')}>Login.</span></p>
+            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/login')}>Login.</span></p>
 
         </div>
     );

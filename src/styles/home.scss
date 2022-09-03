@@ -97,3 +97,55 @@
         p { color: $dark-green; }
     }
 }
+
+.search-bar {
+    border-bottom: $border-thick;
+    padding-bottom: 5px;
+    color: $text-grey;
+    width: $searchbar-width;
+    position: relative;
+    transition: all $transition-duration;
+
+    &:focus-within {
+        border-bottom: $border-thick-black;
+        color: $black;
+        
+        input {
+            color: $black;
+        }
+    }
+
+    &-submit {
+        margin-right: 5px;
+    }
+
+    &-clear {
+        cursor: pointer;
+        margin-left: auto;
+        position: absolute;
+        right: 0;
+        transition: all .15s;
+    }
+
+    &-clear.hidden {
+        opacity: 0;
+    }
+
+    input {
+        font-family: $font;
+        font-weight: 700;
+        padding: 5px;
+        width: calc($searchbar-width - 4rem);
+        height: 7.5px;
+        color: $text-grey;
+        border: 0;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-within {
+            outline: none;
+        }
+    }
+}

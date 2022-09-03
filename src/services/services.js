@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginAPI, testUserAPI } from './url'
+import { loginAPI, testUserAPI, getUserDataAPI } from './url'
 
 async function createResource(url, body) {
     try {
@@ -37,11 +37,11 @@ async function loginService(body) {
     }
 }
 
-async function testSessionData() {
+async function getUserData() {
     try {
         return await axios({
-            url: testUserAPI,
-            method: "post",
+            url: getUserDataAPI,
+            method: "get",
             withCredentials: true
         })
     } catch (e) {
@@ -49,4 +49,4 @@ async function testSessionData() {
     }
 }
 
-export {createResource, getResource, loginService, testSessionData}
+export {createResource, getResource, loginService, getUserData}

@@ -19,7 +19,7 @@ function LoginContent() {
         const userLogin = {email, password}
         const data = await loginService(userLogin)
         if(data.response) return setServerError('Invalid Email or Password.');
-        navigate('/home')
+        navigate('/')
     }
 
     return (
@@ -54,7 +54,7 @@ function LoginContent() {
                     <button className='btn btn-xl btn-dark btn-dark-hover mx-20' type='submit'>Login</button>
                 </form>
                 
-                <p className='text-center fix-bottom'>Don't have an account? <span className='bold text-btn' onClick={() => navigate('signup')}>Sign up now.</span></p>
+                <p className='text-center fix-bottom'>Don't have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/signup')}>Sign up now.</span></p>
             </div>
         </div>
 

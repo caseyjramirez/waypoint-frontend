@@ -28,7 +28,7 @@ function JobContent({jobTitle, company, handleJobTitleChange, handleCompanyChang
             }
             return
         }
-        navigate('/signup/info')
+        navigate('/welcome/signup/info')
 }
 
     return (
@@ -59,12 +59,12 @@ function JobContent({jobTitle, company, handleJobTitleChange, handleCompanyChang
                 />
                 
                 <div className="space-between">
-                    <span onClick={() => navigate('/signup')} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
+                    <span onClick={() => navigate('/welcome/signup')} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
                     <span onClick={validateUserInputs} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>Next{next}</span>
                 </div>
             </form>
             
-            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/')}>Login.</span></p>
+            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/login')}>Login.</span></p>
 
         </div>
     );

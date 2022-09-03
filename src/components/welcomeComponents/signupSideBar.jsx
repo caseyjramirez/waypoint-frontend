@@ -52,7 +52,7 @@ function SignupContent() {
         const data = await createResource(userAPI, newUser)
 
         if(data.response) return setServerError(data.response.data);
-        navigate('/home')
+        navigate('/')
     }
 
 
@@ -70,7 +70,7 @@ function SignupContent() {
                 }>
                 </Route>
 
-                <Route path='/job' element={
+                <Route path='job' element={
                     <JobContent
                     jobTitle={jobTitle}
                     company={company}
@@ -80,7 +80,7 @@ function SignupContent() {
                 }>
                 </Route>
 
-                <Route path='/info' element={
+                <Route path='info' element={
                     <LoginContent
                     email={email}
                     password={password}
