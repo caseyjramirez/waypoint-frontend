@@ -4,9 +4,10 @@ import { validateLoginInfo, validateNewUser } from "../../validation/newUser.val
 import { createResource } from "../../services/services";
 import { userAPI } from "../../services/url";
 import { useNavigate } from "react-router-dom";
+import { homeNavigation } from "../../services/navigation";
 import YourselfContent from "./sign-up/yourselfContent";
 import JobContent from "./sign-up/jobContent";
-import LoginContent from "./sign-up/loginContent";
+import LoginContent from "./sign-up/infoContent";
 
 function SignupContent() {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ function SignupContent() {
         const data = await createResource(userAPI, newUser)
 
         if(data.response) return setServerError(data.response.data);
-        navigate('/')
+        navigate(homeNavigation)
     }
 
 

@@ -3,6 +3,7 @@ import WelcomeHeader from '../welcomeHeader';
 import FormInput from '../../forms/formInput';
 import ServerError from '../../forms/serverError';
 import { useNavigate } from "react-router-dom";
+import { welcomeNavigation } from '../../../services/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
@@ -56,13 +57,13 @@ function LoginContent({email, password, confirmPassword, handleEmailChange, hand
                 />
                 
                 <div className="space-between">
-                    <span onClick={() => navigate('/signup/job')} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
+                    <span onClick={() => navigate(welcomeNavigation.signupRoute.job)} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
                     <span onClick={handleSubmit} className='btn btn-xl btn-right btn-dark btn-dark-hover mx-20 ' type='submit'>Login{next}</span>
                 </div>
             </form>
 
             
-            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/login')}>Login.</span></p>
+            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate(welcomeNavigation.loginRoute)}>Login.</span></p>
 
         </div>
     );

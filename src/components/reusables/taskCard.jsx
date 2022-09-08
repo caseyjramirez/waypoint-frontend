@@ -19,7 +19,7 @@ function TaskCard() {
 
                 {/* this is tags + star/message */}
                 <div className="mb-10 flex-row-align-bottom">
-                    <TagList />
+                    {/* <TagList /> */}
                     <TaskDetails />
                 </div>
             </div>

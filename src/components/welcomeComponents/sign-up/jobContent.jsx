@@ -3,6 +3,7 @@ import WelcomeHeader from "../welcomeHeader";
 import FormInput from "../../forms/formInput";
 import { useNavigate } from "react-router-dom";
 import { validateJob } from '../../../validation/newUser.validation';
+import { welcomeNavigation } from '../../../services/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +29,7 @@ function JobContent({jobTitle, company, handleJobTitleChange, handleCompanyChang
             }
             return
         }
-        navigate('/welcome/signup/info')
+        navigate(welcomeNavigation.signupRoute.info)
 }
 
     return (
@@ -59,12 +60,12 @@ function JobContent({jobTitle, company, handleJobTitleChange, handleCompanyChang
                 />
                 
                 <div className="space-between">
-                    <span onClick={() => navigate('/welcome/signup')} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
+                    <span onClick={() => navigate(welcomeNavigation.signupRoute.base)} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>{back}Back</span>
                     <span onClick={validateUserInputs} className='btn btn-xl btn-right btn-dark mx-20 ' type='submit'>Next{next}</span>
                 </div>
             </form>
             
-            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/login')}>Login.</span></p>
+            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate(welcomeNavigation.loginRoute)}>Login.</span></p>
 
         </div>
     );

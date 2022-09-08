@@ -1,10 +1,11 @@
-import TaskTag from "./taskTag";
+import StatusTag from "./statusTag";
 
-function TagList() {
+function TagList({status}) {
     return (
         <div className="tag-list">
-            <TaskTag />
-            <TaskTag />
+            <StatusTag
+                status={status}
+            />
         </div>
     );
 }

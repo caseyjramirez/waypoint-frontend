@@ -3,6 +3,7 @@ import WelcomeHeader from '../welcomeHeader';
 import FormInput from '../../forms/formInput';
 import { useNavigate } from "react-router-dom";
 import { validateName } from '../../../validation/newUser.validation';
+import { welcomeNavigation } from '../../../services/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +31,7 @@ function YourselfContent({firstName, lastName, handleFirstNameChange, handleLast
                 }
                 return
             }
-            navigate('/welcome/signup/job')
+            navigate(welcomeNavigation.signupRoute.job)
     }
     
     
@@ -68,7 +69,7 @@ function YourselfContent({firstName, lastName, handleFirstNameChange, handleLast
                 </div>
             </form>
             
-            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate('/welcome/login')}>Login.</span></p>
+            <p className='text-center fix-bottom'>Already have an account? <span className='bold text-btn' onClick={() => navigate(welcomeNavigation.loginRoute)}>Login.</span></p>
 
         </div>
     );

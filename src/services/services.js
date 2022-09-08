@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginAPI, testUserAPI, getUserDataAPI } from './url'
+import { loginAPI, getUserDataAPI } from './url'
 
 async function createResource(url, body) {
     try {
