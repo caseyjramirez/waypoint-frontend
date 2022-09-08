@@ -66,6 +66,11 @@
     margin-right: $pm-space-xxl;
 }
 
+.px-10 {
+    padding-top: $pm-space-lg;
+    padding-bottom: $pm-space-lg;
+}
+
 
 .form-input {
     width: 100%;
@@ -123,6 +128,7 @@
     border: .5px solid $black;
     cursor: pointer;
     border-radius: $border-radius-sm;
+    font-size: $p-font-size
 }
 
 .btn-xl {

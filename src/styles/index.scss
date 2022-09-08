@@ -8,11 +8,11 @@
 html {
     font-family: $font;
     color: $black;
-    letter-spacing: -.06rem;
+    letter-spacing: $letter-spacing;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: $h1-font-size;
     font-weight: 700;
 }
 
@@ -21,10 +21,15 @@ h2 {
 }
 
 p {
-    font-size: 1rem;
+    font-size: $p-font-size;
     font-weight: 400;
     color: $text-grey;
     line-height: 1.15rem;
+    letter-spacing: -.05rem;
+}
+
+p.text-small {
+    font-size: $p-font-size-sm
 }
 
 // li {
@@ -95,6 +100,10 @@ p {
 .flex-row {
     display: flex;
     flex-direction: row;
+}
+
+.flex-row.align-center {
+    align-items: center;
 }
 
 .flex-row-align-bottom {

@@ -3,9 +3,10 @@
 .sidebar {
     width: $sidebar-width;
     height: 100vh;
+    max-height: 100vh;
     background-color: $cream;
     border-right: $border;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     
@@ -14,9 +15,6 @@
 }
 
 .name-tag {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding-top: $pm-space-xl;
 
     .avatar {
@@ -25,6 +23,7 @@
         border-radius: 10px;
         object-fit: cover;
         margin-right: $pm-space;
+        position: relative;
     }
 }
 
@@ -35,12 +34,25 @@
     height: 100vh;
     // background-color: $light-red;
     margin-left: calc($sidebar-width + $pm-space-lg + $pm-space-lg);
-    padding-top: $pm-space-xl;
     padding-left: $pm-space-lg;
     padding-right: $pm-space-lg;
+    padding-top: 100px;
 
     .feed-header {
-        margin-bottom: $pm-space-xl;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        
+        .bg-white {
+            background-color: $white;
+        }
+
+        .header-shadow {
+            height: 40px;
+            width: 100%;
+            background-image: linear-gradient($white, transparent);
+        }
+
     }
 
     .feed-content {
@@ -74,9 +86,50 @@
         width: 100%;
     }
 
+
+}
+
+.task-card.new-task {
+    flex-direction: column;
+}
+
+.tag-list {
+    width: 100%;
+    display: inline-block;
+
+    background-color: $cream;
+
+    .green {
+        background-color: $light-green;
+        border: $border-green;
+        p { color: $dark-green; }
+    }
+
+    .yellow {
+        background-color: $light-yellow;
+        border: $border-yellow;
+        p { color: $dark-yellow; }
+    }
+
+    .red {
+        background-color: $light-red;
+        border: $border-red;
+        p { color: $status-dark-red; }
+    }
+
     .task-tag {
-        border-radius: $border-radius-sm;
+        background-color: $cream;
+        border: $border;
+        p { 
+            color: $text-grey; 
+        }
+        .status-symbol {
+            filter: saturate(0%);
+        }
+
+        border-radius: $border-radius;
         padding: $pm-space-xsm;
+        padding-left: $pm-space;
         display: inline-block;
         cursor: pointer;
 
@@ -85,16 +138,6 @@
             display: inline-block;
             
         }
-    }
-}
-
-.tag-list {
-    width: 100%;
-    display: inline-block;
-    .green {
-        background-color: $light-green;
-        border: $border-green;
-        p { color: $dark-green; }
     }
 }
 
@@ -139,6 +182,7 @@
         height: 7.5px;
         color: $text-grey;
         border: 0;
+        background-color: transparent;
 
         &:focus {
             outline: none;
@@ -146,6 +190,52 @@
 
         &:focus-within {
             outline: none;
+        }
+    }
+}
+
+.btn.plus-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    color: $cream;
+    background-color: $black;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: $pm-space-xl;
+    right: $pm-space-lg;
+    cursor: pointer;
+}
+
+.new-task {
+    &-container {
+        margin-left: $pm-space-xxl;
+    }
+
+    input {
+        font-family: $font;
+        border: 0;
+        font-size: $h1-font-size;
+        font-weight: bold;
+        color: $black;
+        letter-spacing: $letter-spacing;
+        display: flex;
+        flex-direction: row;
+
+        &.description {
+            font-size: $p-font-size-lg;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
         }
     }
 }

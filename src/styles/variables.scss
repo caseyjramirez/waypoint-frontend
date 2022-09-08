@@ -11,6 +11,7 @@ $black: #424242;
 $dark-blue: #335DD4;
 $light-blue: #E7EFFF;
 
+$status-dark-red: #a24949;
 $dark-red: #d47575;
 $light-red: #F9C8CA;
 
@@ -23,8 +24,18 @@ $checked-blue: #0F75E0;
 $dark-green: #1C3829;
 $light-green: #DBECDB;
 
+$success-green: #379663;
+$danger-red: #c84d4d;
+
 
 $font: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+$p-font-size-sm: .75rem;
+$p-font-size: .85rem;
+$p-font-size-lg: 1rem;
+$h1-font-size: 2rem;
+$icon-l: 1.3rem;
+$letter-spacing: -.06rem;
+
 $transition-duration: .25s;
 
 $border-radius-sm: 3px;
@@ -35,6 +46,8 @@ $border: .5px solid $dec-grey;
 $border-thick: 1px solid $dec-grey;
 $border-thick-black: 1px solid $black;
 $border-green: .5px solid $dark-green;
+$border-yellow: .5px solid $dark-yellow;
+$border-red: .5px solid $status-dark-red;
 
 // pm (padding and margin space)
 $pm-space-xsm: 3px;
