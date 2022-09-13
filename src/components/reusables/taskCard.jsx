@@ -1,4 +1,3 @@
-import TagList from "./tagList";
 import TaskDetails from "./taskDetails";
 
 function TaskCard() { 

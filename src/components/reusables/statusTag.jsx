@@ -1,35 +1,40 @@
-function StatusTag({status}) {
-
-    console.log(status);
+function StatusTag({status, onSatusChange}) {
 
     const statusOptions = [
         {
             symbol: '🚀',
             text: 'Ready!',
             value: 'ready',
-            class: 'green'
+            className: 'green'
         },
         {
             symbol: '⏳',
             text: 'Waiting.',
             value: 'waiting',
-            class: 'yellow'
+            className: 'yellow'
         },
         {
             symbol: '🛑',
             text: 'Paused.',
             value: 'paused',
-            class: 'red'
+            className: 'red'
         }
     ]
+
+    function renderClass(value, className) {
+        if(value === status) return `mr-10 flex-row tag ${className}`
+        else return `mr-10 flex-row tag unselected ${className}`
+    }
+
     return (
-        <div className="status-tag mb-20">
+        <div className="mb-20">
             {
-                statusOptions.map(status => {
+                statusOptions.map(statusOption => {
+                    const {symbol, text, value, className} = statusOption
                     return (
-                    <button className={`mr-10 task-tag flex-row green`}>
-                        <p className='mr-10 status-symbol'>{status.symbol}</p>
-                        <p className='mr-10'>{status.text}</p>
+                    <button onClick={(e) => onSatusChange(value)} key={value} className={renderClass(value, className)}>
+                        <p className='mr-10' >{text}</p>
+                        <p className='status-symbol'>{symbol}</p>
                     </button>
                     )})
             }

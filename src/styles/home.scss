@@ -86,59 +86,180 @@
         width: 100%;
     }
 
-
 }
 
-.task-card.new-task {
+.new-task-card {
     flex-direction: column;
+    letter-spacing: $letter-spacing-plus;
+
+    &-container {
+        margin-left: $pm-space-xxl;
+    }
+
+    textarea {
+        background-color: $cream;
+        font-family: $font;
+        border: none;
+        height: 60px;
+        color: $black;
+        width: calc(100% - $pm-space-xxl);
+        resize: none;
+
+        &::placeholder {
+            color: $dec-grey;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    input {
+        font-family: $font;
+        border: 0;
+        font-size: $h2-font-size;
+        font-weight: bold;
+        color: $black;
+        display: flex;
+        flex-direction: row;
+
+        &.description {
+            font-size: $p-font-size-lg;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
+        }
+    }
+
+    h3 {
+        color: $black
+    }
 }
 
-.tag-list {
+.tags {
     width: 100%;
     display: inline-block;
 
-    background-color: $cream;
+    .action-tag {
+        padding: 0px $pm-space-lg;
+    }
+    
+    .tag {
+        border-radius: $border-radius;
+        padding: $pm-space-xsm $pm-space-lg;
+        display: inline-block;
+        cursor: pointer;
+        background-color: $white;
+
+        p {
+            font-size: .9rem;
+            display: inline-block;
+        }
+    }
 
     .green {
         background-color: $light-green;
         border: $border-green;
         p { color: $dark-green; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-green;
+            border: $border-green;
+            p { color: $dark-green; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
     }
 
     .yellow {
         background-color: $light-yellow;
         border: $border-yellow;
         p { color: $dark-yellow; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-yellow;
+            border: $border-yellow;
+            p { color: $dark-yellow; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
     }
 
     .red {
         background-color: $light-red;
         border: $border-red;
         p { color: $status-dark-red; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-red;
+            border: $border-red;
+            p { color: $status-dark-red; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
     }
+}
 
-    .task-tag {
-        background-color: $cream;
-        border: $border;
-        p { 
-            color: $text-grey; 
-        }
-        .status-symbol {
-            filter: saturate(0%);
-        }
-
-        border-radius: $border-radius;
+.time {
+    align-items: center;
+    input {
+        font-size: $p-font-size;
+        color: $black;
         padding: $pm-space-xsm;
-        padding-left: $pm-space;
-        display: inline-block;
-        cursor: pointer;
+        letter-spacing: .05rem;
 
-        p {
-            font-size: .9rem;
-            display: inline-block;
-            
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
         }
     }
+
+
 }
 
 .search-bar {
@@ -210,32 +331,8 @@
     cursor: pointer;
 }
 
-.new-task {
-    &-container {
-        margin-left: $pm-space-xxl;
-    }
-
-    input {
-        font-family: $font;
-        border: 0;
-        font-size: $h1-font-size;
-        font-weight: bold;
-        color: $black;
-        letter-spacing: $letter-spacing;
-        display: flex;
-        flex-direction: row;
-
-        &.description {
-            font-size: $p-font-size-lg;
-        }
-
-        &:focus {
-            outline: none;
-        }
-
-        &::placeholder {
-            color: $dec-grey;
-            font-family: $font;
-        }
-    }
-}
+/* 
+==================== 
+CODE IN TESTING
+==================== 
+*/

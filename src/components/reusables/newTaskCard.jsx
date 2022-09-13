@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
-import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import StatusTag from './statusTag';
-import TagList from './tagList';
+import DateTimeSelector from './dateTimeSelector';
+import ActionTag from './actionTag';
 
 function NewTaskCard({onDiscardNewTask}) {
-    const check = <FontAwesomeIcon icon={faCheck} className='icon save' />
-    const discard = <FontAwesomeIcon icon={faX} className='icon discard' />
 
     const [status, setStatus] = useState('ready')
+    const [timeDue, setTimeDue] = useState('17:00')
+    const [dateDue, setDateDue] = useState(new Date().toJSON().substring(0, 10))
 
-    function handleStatusChange(e) {
-        console.log(e);
+    function handleSaveNewTask() {
+        console.log('saved');
     }
 
     return (
-        <div className="task-card new-task mb-20">
-            <div className='new-task-container'>
+        <div className="task-card new-task-card mb-20">
+            <div className='new-task-card-container'>
                 <input className='mb-10' type="text" placeholder='Create a new task.'/>
-                <input className='description mb-10' type="text" placeholder='Give me a description.'/>
-                <TagList
-                    status={status}
+                <textarea className='description mb-10' type="textbox" placeholder='Give me a description.'/>
+                
+                <DateTimeSelector
+                    onTimeChange={setTimeDue}
+                    timeDue={timeDue}
+                    onDateChange={setDateDue}
+                    datedue={dateDue}
                 />
-                <div className="flex-row">
-                    <span className='mr-20'>{check}</span>
-                    <span onClick={onDiscardNewTask} >{discard}</span>
+                
+                <div className="tags">
+                    <StatusTag
+                        status={status}
+                        onSatusChange={setStatus}
+                    />               
+                    <ActionTag
+                        onSave={handleSaveNewTask}
+                        onDiscard={onDiscardNewTask}
+                    />
+               
                 </div>
+                
             </div>
         </div>
     );

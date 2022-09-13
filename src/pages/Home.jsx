@@ -19,7 +19,7 @@ function Home() {
 
     const [tasks, setTasks] = useState([]);
     const [tags, setTags] = useState([]);
-    const [creatingNewTask, setCreatingNewTask] = useState(true)
+    const [isCreatingNewTask, setIsCreatingNewTask] = useState(true)
     
     useEffect(() => {
         getUserData()
@@ -36,8 +36,8 @@ function Home() {
         })
     }, [])
 
-    const handleAddNewTask = () => setCreatingNewTask(true)
-    const handleDiscardNewTask = () => setCreatingNewTask(false)
+    const handleAddNewTask = () => setIsCreatingNewTask(true)
+    const handleDiscardNewTask = () => setIsCreatingNewTask(false)
 
 
     
@@ -50,7 +50,7 @@ function Home() {
             />
             <Feed
                 profileData={{firstName}}
-                creatingNewTask={creatingNewTask}
+                creatingNewTask={isCreatingNewTask}
                 onDiscardNewTask={handleDiscardNewTask}
             />
         </div>

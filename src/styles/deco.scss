@@ -32,22 +32,5 @@
 }
 
 .icon.discard {
-    margin-top: .15rem;
-    font-size: calc($icon-l - .25rem);
-    cursor: pointer;
-    transition: $transition-duration;
-
-    &:hover {
-        color: $danger-red;
-    }
-}
-
-.icon.save {
-    font-size: $icon-l;
-    cursor: pointer;
-    transition: $transition-duration;
-
-    &:hover {
-        color: $success-green;
-    }
+    font-size: calc($p-font-size - .125rem);
 }
