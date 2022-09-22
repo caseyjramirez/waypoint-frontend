@@ -97,29 +97,6 @@
     ::placeholder {
         color: $text-grey;
     }
-    
-    .error-message {
-        font-size: .85rem;
-        color: $dark-red;
-        margin-left: $pm-space;
-        margin-top: $pm-space;
-    }
-
-    .error-input {
-        border: .75px solid $dark-red;
-    }
-}
-
-.server-error-container {
-    border: .75px solid $dark-red;
-    border-radius: $border-radius-sm;
-    padding: $pm-space;
-    background-color: $light-red;
-    
-    p {
-        color: $dark-red;
-        font-size: .85rem;
-    }
 }
 
 .btn {

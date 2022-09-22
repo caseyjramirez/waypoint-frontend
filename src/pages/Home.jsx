@@ -36,9 +36,14 @@ function Home() {
         })
     }, [])
 
+    function saveNewTask(newTask) {
+        handleDiscardNewTask()
+        setTasks(tasks => [newTask, ...tasks])
+    }
+
+
     const handleAddNewTask = () => setIsCreatingNewTask(true)
     const handleDiscardNewTask = () => setIsCreatingNewTask(false)
-
 
     
     const {firstName, lastName, jobTitle, company, email, userIcon} = profileData
@@ -50,8 +55,10 @@ function Home() {
             />
             <Feed
                 profileData={{firstName}}
+                tasks={tasks}
                 creatingNewTask={isCreatingNewTask}
                 onDiscardNewTask={handleDiscardNewTask}
+                onSaveNewTask={saveNewTask}
             />
         </div>
     );

@@ -1,26 +1,34 @@
+import React from 'react';
 import Directory from "../reusables/directory";
 import SearchBar from "../reusables/searchBar";
 import GreetingMessage from "../reusables/geetingMessage";
 import TaskCard from "../reusables/taskCard";
 import NewTaskCard from "../reusables/newTaskCard";
 
-function Feed({profileData, creatingNewTask, onDiscardNewTask}) {
+function Feed({profileData, tasks, creatingNewTask, onDiscardNewTask, onSaveNewTask}) {
+
+
     function renderFeedConent() {
         return creatingNewTask ? (
             <>
                 <NewTaskCard
                     onDiscardNewTask={onDiscardNewTask}
+                    onSaveNewTask={onSaveNewTask}
                 />
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
+                {tasks.map(task => {
+                    return (
+                        <TaskCard data={task} />
+                    )
+                })}
             
             </>
         ) : (
             <>
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
+                {tasks.map(task => {
+                    return (
+                        <TaskCard data={task} />
+                    )
+                })}
             </>
         ) ;
     }

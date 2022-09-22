@@ -4,6 +4,8 @@
 @import './deco.scss';
 @import './login.scss';
 @import './home.scss';
+@import './error.scss';
+@import './taskCard.scss';
 
 html {
     font-family: $font;
@@ -31,10 +33,6 @@ p {
 p.text-small {
     font-size: $p-font-size-sm
 }
-
-// li {
-//     list-style: inside;
-// }
 
 .logo {
     position: fixed;

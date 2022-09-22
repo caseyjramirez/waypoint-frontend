@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginAPI, getUserDataAPI } from './url'
+import { loginAPI, getUserDataAPI, createNewTaskAPI } from './url'
 
 async function createResource(url, body) {
     try {
@@ -49,4 +49,23 @@ async function getUserData() {
     }
 }
 
-export {createResource, getResource, loginService, getUserData}
+async function createNewTask(task) {
+    try {
+        return await axios({
+            url: createNewTaskAPI,
+            method: "post",
+            data: task,
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
+export {
+    createResource, 
+    getResource, 
+    loginService, 
+    getUserData, 
+    createNewTask
+}

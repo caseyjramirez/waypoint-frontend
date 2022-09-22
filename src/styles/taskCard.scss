@@ -1,0 +1,205 @@
+@use './variables.scss';
+
+.task-card {
+    max-width: 800px;
+    width: calc(100%);
+    background-color: $cream;
+    border: $border-thick;
+    border-radius: $border-radius;
+    padding: $pm-space-lg;
+    box-shadow: $box-shadow;
+    display: flex;
+    flex-direction: row;
+
+    .task-card-checkbox {
+        box-shadow: $checkbox-box-shadow;
+        width: 15px;
+        height: 15px;
+        border: $border-thick;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+    }
+
+    .task-card-content {
+        width: 100%;
+    }
+
+}
+
+.new-task-card {
+    flex-direction: column;
+    letter-spacing: $letter-spacing-plus;
+
+    &-container {
+        margin-left: $pm-space-xxl;
+    }
+
+    textarea {
+        background-color: $cream;
+        font-family: $font;
+        border: none;
+        height: 60px;
+        color: $black;
+        width: calc(100% - $pm-space-xxl);
+        resize: none;
+
+        &.description{
+            padding: $pm-space;
+            border: $border;
+            border-radius: $border-radius;
+        }
+
+        &::placeholder {
+            color: $dec-grey;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    input {
+        font-family: $font;
+        border: 0;
+        font-size: $h1-font-size;
+        font-weight: bold;
+        color: $black;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        max-width: calc(100% - $pm-space-lg);
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
+        }
+    }
+
+    h3 {
+        color: $black
+    }
+}
+
+.tags {
+    width: 100%;
+    
+
+    .action-tag {
+        padding: 0px $pm-space-lg;
+    }
+    
+    .tag {
+        border-radius: $border-radius;
+        padding: $pm-space-xsm $pm-space-lg;
+        display: inline-block;
+        cursor: pointer;
+        background-color: $white;
+
+        p {
+            font-size: .9rem;
+            display: inline-block;
+        }
+    }
+
+    .green {
+        background-color: $light-green;
+        border: $border-green;
+        p { color: $dark-green; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-green;
+            border: $border-green;
+            p { color: $dark-green; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
+    }
+
+    .yellow {
+        background-color: $light-yellow;
+        border: $border-yellow;
+        p { color: $dark-yellow; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-yellow;
+            border: $border-yellow;
+            p { color: $dark-yellow; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
+    }
+
+    .red {
+        background-color: $light-red;
+        border: $border-red;
+        p { color: $status-dark-red; }
+        transition: $transition-duration;
+    
+        &.unselected {
+            background-color: $white;
+            border: $border;
+            p { 
+                color: $text-grey; 
+            }
+            .status-symbol {
+                filter: saturate(0%);
+            }
+        }
+
+        &:hover {
+            background-color: $light-red;
+            border: $border-red;
+            p { color: $status-dark-red; }
+            .status-symbol {
+                filter: saturate(100%);
+            }
+        }
+    }
+}
+
+.time {
+    align-items: center;
+    width: 100%;
+    max-width: fit-content;
+    input {
+        font-size: $p-font-size;
+        color: $black;
+        padding: $pm-space-xsm;
+        letter-spacing: .05rem;
+
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
+        }
+    }
+}
