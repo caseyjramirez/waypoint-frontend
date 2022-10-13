@@ -50,8 +50,20 @@
     margin-right: $pm-space;
 }
 
+.ml-5 {
+    margin-left: $pm-space-sm;
+}
+
+.mr-5 {
+    margin-right: $pm-space-sm;
+}
+
 .mr-10 {
     margin-right: $pm-space;
+}
+
+.mr-15 {
+    margin-right: 15px;
 }
 
 .mr-20 {
@@ -102,10 +114,19 @@
 .btn {
     background-color: $cream;
     font-size: 1rem;
-    border: .5px solid $black;
+    border: $btn-border;
     cursor: pointer;
     border-radius: $border-radius-sm;
-    font-size: $p-font-size
+    font-size: $p-font-size;
+    
+    &.add-tag {
+        border: $border;
+        background-color: $white;
+        border-radius: 5px;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+    }
 }
 
 .btn-xl {
@@ -125,7 +146,7 @@
 
 .btn-dark {
     background-color: $white;
-    border: .5px solid $black;
+    border: $btn-border;
     color: $black;
 
 }

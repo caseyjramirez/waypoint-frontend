@@ -17,7 +17,7 @@ function SearchBar() {
     return (
         <div className='search-bar'>
             <span className='search-bar-submit mr-10'>{search}</span>
-            <input type="text" value={query} onChange={e => setQuery(e.target.value)}/>
+            <input  type="text" value={query} onChange={e => setQuery(e.target.value)}/>
             <span className={renderClearClass()} onClick={() => setQuery("")}>{clear}</span>
         </div>
     );

@@ -10,6 +10,7 @@
     box-shadow: $box-shadow;
     display: flex;
     flex-direction: row;
+    
 
     .task-card-checkbox {
         box-shadow: $checkbox-box-shadow;
@@ -24,6 +25,48 @@
         width: 100%;
     }
 
+    .edit-button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+
+        .edit-btn {
+            border: none;
+            color: $black;
+            opacity: 0%;
+        }
+    }
+
+    &:hover {
+        .edit-btn {
+            transition: $transition-duration-l;
+            opacity: 100%;
+        }
+    }
+
+}
+
+.title-input {
+        font-family: $font;
+        cursor: text;
+        border: 0;
+        font-size: $h1-font-size;
+        font-weight: bold;
+        color: $black;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        max-width: calc(100% - $pm-space-lg);
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $dec-grey;
+            font-family: $font;
+        }
 }
 
 .new-task-card {
@@ -86,15 +129,32 @@
 
 .tags {
     width: 100%;
-    
 
-    .action-tag {
-        padding: 0px $pm-space-lg;
+    .save-tag {
+        border: $border-green;
+        transition: $transition-duration;
+        p { color: $dark-green; }
+        &:hover {
+            background-color: $light-green;
+        }
+    }
+
+    .discard-tag {
+        border: $border-red;
+        transition: $transition-duration;
+        p { color: $status-dark-red; }
+        &:hover {
+            background-color: $light-red;
+        }
+    }
+
+    .action-tag:hover {
+        filter: saturate(100%);
     }
     
     .tag {
         border-radius: $border-radius;
-        padding: $pm-space-xsm $pm-space-lg;
+        padding: $pm-space-sm $pm-space-lg;
         display: inline-block;
         cursor: pointer;
         background-color: $white;
@@ -187,10 +247,97 @@
     }
 }
 
+.task-tag {
+    padding: $pm-space-xsm $pm-space;
+    border-radius: $border-radius-sm;
+    display: flex;
+    &:hover {
+        button {
+            display: block;
+
+        }
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        display: none;
+    }
+
+    &.tag-red {
+        background-color: $tag-red-light;
+        border: $tag-border-red;
+        p, button {
+            color: $tag-red-dark;
+        }
+    }
+
+    &.tag-orange {
+        background-color: $tag-orange-light;
+        border: $tag-border-orange;
+        p, button {
+            color: $tag-orange-dark;
+        }
+    }
+
+    &.tag-green {
+        background-color: $tag-green-light;
+        border: $tag-border-green;
+        p, button {
+            color: $tag-green-dark;
+        }
+    }
+
+    &.tag-blue {
+        background-color: $tag-blue-light;
+        border: $tag-border-blue;
+        p, button {
+            color: $tag-blue-dark;
+        }
+    }
+
+    &.tag-yellow {
+        background-color: $tag-yellow-light;
+        border: $tag-border-yellow;
+        p, button {
+            color: $tag-yellow-dark;
+        }
+    }
+}
+
+.task-tag-search-result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: $pm-space-sm $pm-space-lg;
+    border-radius: $border-radius;
+    transition: $transition-duration;
+    cursor: pointer;
+
+    &-tag-container {
+        width: calc(100% - $pm-space);
+    }
+
+    span {
+        opacity: 0%;
+    }
+
+    &:hover {
+        background-color: $light-grey-hover;
+        span {
+            opacity: 100%;
+        }
+
+    }
+}
+
+
 .time {
     align-items: center;
     width: 100%;
     max-width: fit-content;
+    
     input {
         font-size: $p-font-size;
         color: $black;
@@ -202,4 +349,133 @@
             font-family: $font;
         }
     }
+}
+
+.edit-task {
+    right: -100%;
+    transition: $transition-duration-l;
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    background-color: $cream;
+    border-left: $border;
+    box-shadow: $edit-task-box-shadow;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+
+    &.active {
+        right: 0%;
+    }
+
+    .type {
+        background-color: $cream;
+        border: $border-type;
+        padding: $pm-space;
+        border-radius: $border-radius;
+    }
+
+    &-wrapper {
+        margin: $pm-space-lg $pm-space-xxxl;
+        width: 100%;
+
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.tag-form {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 0px;
+    height: 0px;
+    background-color: $white;
+    border: $border-tag-form-hidden;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius-sm;
+    transition: $transition-duration;
+    overflow: hidden;
+    
+    &.active {
+        width: 300px;
+        height: 300px;
+        border: $border;
+        transition: $transition-duration;
+        
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        align-items: center;
+
+        &-existing-tags {
+            display: flex;
+        }
+    }
+
+    &-adder-container {
+        margin: 20px;
+
+        &-search-bar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &-results {
+            overflow: scroll;
+            height: 170px;
+            background-color: $light-grey;
+            border-radius: $border-radius;
+        }
+
+        &-creator {
+            padding: $pm-space;
+            border-radius: $border-radius-sm;
+            flex-direction: row;
+            align-items: center;
+            background-color: $white;
+            transition: $transition-duration;
+            width: 100%;
+            border: none;
+            height: $pm-space-xxl;
+            transition: $transition-duration;
+            display: flex;
+            opacity: 0;
+            transition: $transition-duration;
+            
+            &.active {
+                background-color: $light-grey;
+                opacity: 100%;
+                
+                &:hover {
+                    background-color: $light-grey-hover;
+                }
+            }
+            
+
+            p {
+                color: $text-grey;
+            }
+        }
+
+        input {
+            color: $black;
+            font-size: $p-font-size;
+            
+            &::placeholder {
+                color: $dec-grey;
+            }
+        }
+    }
+}
+
+.testing-this {
+    display: none;
 }

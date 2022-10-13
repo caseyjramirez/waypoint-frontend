@@ -3,9 +3,18 @@ import Directory from "../reusables/directory";
 import SearchBar from "../reusables/searchBar";
 import GreetingMessage from "../reusables/geetingMessage";
 import TaskCard from "../reusables/taskCard";
-import NewTaskCard from "../reusables/newTaskCard";
+import NewTaskCard from "../tasks/newTaskCard";
 
-function Feed({profileData, tasks, creatingNewTask, onDiscardNewTask, onSaveNewTask}) {
+function Feed({
+    profileData, 
+    tasks, 
+    tags, 
+    creatingNewTask, 
+    onDiscardNewTask, 
+    onSaveNewTask, 
+    onCreateNewTag, 
+    onEditForm
+}) {
 
 
     function renderFeedConent() {
@@ -14,10 +23,13 @@ function Feed({profileData, tasks, creatingNewTask, onDiscardNewTask, onSaveNewT
                 <NewTaskCard
                     onDiscardNewTask={onDiscardNewTask}
                     onSaveNewTask={onSaveNewTask}
+                    tags={tags}
+                    onCreateNewTag={onCreateNewTag}
+                    onEditTag={onEditForm}
                 />
                 {tasks.map(task => {
                     return (
-                        <TaskCard data={task} />
+                        <TaskCard key={task._id} data={task} raiseClick={() => onEditForm(task)} />
                     )
                 })}
             
@@ -26,7 +38,7 @@ function Feed({profileData, tasks, creatingNewTask, onDiscardNewTask, onSaveNewT
             <>
                 {tasks.map(task => {
                     return (
-                        <TaskCard data={task} />
+                        <TaskCard key={task._id} data={task} onClick={() => onEditForm(task)} />
                     )
                 })}
             </>

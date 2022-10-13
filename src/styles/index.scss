@@ -30,6 +30,19 @@ p {
     letter-spacing: -.05rem;
 }
 
+select {
+    padding: $pm-space-sm $pm-space;
+    border: $border;
+    border-radius: $border-radius;
+    color: $black;
+    font-family: $font;
+
+    &:focus {
+        border: $tag-border-blue;
+    }
+
+}
+
 p.text-small {
     font-size: $p-font-size-sm
 }
@@ -98,6 +111,19 @@ p.text-small {
 .flex-row {
     display: flex;
     flex-direction: row;
+
+    &.ai-end {
+        align-items: end;
+    }
+    &.ai-center {
+        align-items: center;
+    }
+}
+
+.flex-row-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .flex-row.align-center {
@@ -108,4 +134,16 @@ p.text-small {
     display: flex;
     flex-direction: row;
     align-items: end; 
+}
+
+.inline {
+    display: inline;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.editor-label {
+    min-width: 60px;
 }

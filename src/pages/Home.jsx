@@ -4,6 +4,7 @@ import { getUserData } from '../services/services';
 import { welcomeNavigation } from '../services/navigation';
 import SideBar from '../components/homeComponents/home.sidebar';
 import Feed from '../components/homeComponents/home.feed';
+import EditForm from '../components/homeComponents/editForm/home.editForm';
 
 function Home() {
     const navigate = useNavigate();
@@ -17,9 +18,13 @@ function Home() {
         userIcon: ''
     })
 
+
+
     const [tasks, setTasks] = useState([]);
     const [tags, setTags] = useState([]);
     const [isCreatingNewTask, setIsCreatingNewTask] = useState(true)
+    const [isEditFormOpen, setIsEditFormOpen] = useState(false)
+    const [editFormData, setEditFormData] = useState()
     
     useEffect(() => {
         getUserData()
@@ -41,9 +46,33 @@ function Home() {
         setTasks(tasks => [newTask, ...tasks])
     }
 
+    function createNewTag(newTag) {
+        setTags(tags => [...tags, newTag])
+    }
+
+    function updateTag(updateTag) {
+        setTags(tags => tags.map(tag => {
+            if (tag._id === updateTag._id) {
+                return updateTag
+            }
+            return tag
+        }))
+    }
+
+    function deleteTag(tagId) {
+        setTags(tags => tags.filter(tag => tag._id !== tagId))
+    }
+
 
     const handleAddNewTask = () => setIsCreatingNewTask(true)
     const handleDiscardNewTask = () => setIsCreatingNewTask(false)
+    
+    const openEditForm = (data) => {
+        setEditFormData(data)
+        setIsEditFormOpen(true)
+    }
+    
+    const closeTaskForm = () => setIsEditFormOpen(false)
 
     
     const {firstName, lastName, jobTitle, company, email, userIcon} = profileData
@@ -56,9 +85,21 @@ function Home() {
             <Feed
                 profileData={{firstName}}
                 tasks={tasks}
+                tags={tags}
                 creatingNewTask={isCreatingNewTask}
                 onDiscardNewTask={handleDiscardNewTask}
                 onSaveNewTask={saveNewTask}
+                onCreateNewTag={createNewTag}
+                onEditForm={openEditForm}
+
+            />
+
+            <EditForm
+                isOpen={isEditFormOpen}
+                onCloseTaskForm={closeTaskForm}
+                data={editFormData}
+                onUpdateTag={updateTag}
+                onDeleteTag={deleteTag}
             />
         </div>
     );
