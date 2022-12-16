@@ -6,16 +6,15 @@ import TaskCard from "../reusables/taskCard";
 import NewTaskCard from "../tasks/newTaskCard";
 
 function Feed({
-    profileData, 
+    user, 
     tasks, 
     tags, 
     creatingNewTask, 
     onDiscardNewTask, 
     onSaveNewTask, 
     onCreateNewTag, 
-    onEditForm
+    onEditForm,
 }) {
-
 
     function renderFeedConent() {
         return creatingNewTask ? (
@@ -29,7 +28,14 @@ function Feed({
                 />
                 {tasks.map(task => {
                     return (
-                        <TaskCard key={task._id} data={task} raiseClick={() => onEditForm(task)} />
+                        <TaskCard 
+                            key={task._id} 
+                            data={task}
+                            tags={tags}
+                            onCreateNewTag={onCreateNewTag}
+                            onEditTag={onEditForm}
+                            onEditTask={onEditForm}
+                        />
                     )
                 })}
             
@@ -38,7 +44,14 @@ function Feed({
             <>
                 {tasks.map(task => {
                     return (
-                        <TaskCard key={task._id} data={task} onClick={() => onEditForm(task)} />
+                        <TaskCard 
+                            key={task._id} 
+                            data={task} 
+                            tags={tags}
+                            onCreateNewTag={onCreateNewTag}
+                            onEditTag={onEditForm}
+                            onEditTask={onEditForm}
+                        />
                     )
                 })}
             </>
@@ -57,7 +70,7 @@ function Feed({
             
             <div className="feed-content">
                 <GreetingMessage
-                    firstName={profileData.firstName}
+                    firstName={user.firstName}
                 />
 
                 {renderFeedConent()}

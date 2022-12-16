@@ -1,95 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getUserData } from '../services/services';
-import { welcomeNavigation } from '../services/navigation';
 import SideBar from '../components/homeComponents/home.sidebar';
 import Feed from '../components/homeComponents/home.feed';
 import EditForm from '../components/homeComponents/editForm/home.editForm';
 
-function Home() {
-    const navigate = useNavigate();
+function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, deleteTask }) {
+    // const navigate = useNavigate();
 
-    const [profileData, setProfileData] = useState({
-        firstName: '', 
-        lastName: '', 
-        jobTitle: '', 
-        company: '', 
-        email: '', 
-        userIcon: ''
-    })
-
-
-
-    const [tasks, setTasks] = useState([]);
-    const [tags, setTags] = useState([]);
-    const [isCreatingNewTask, setIsCreatingNewTask] = useState(true)
+    const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
     const [isEditFormOpen, setIsEditFormOpen] = useState(false)
     const [editFormData, setEditFormData] = useState()
-    
-    useEffect(() => {
-        getUserData()
-        .then(res => {
-            if(res.status !== 200) return navigate(welcomeNavigation.loginRoute)
-            const { firstName, lastName, jobTitle, company, email, userIcon, tasks, tags } = res.data
-
-            setProfileData({firstName, lastName, jobTitle, company, email, userIcon})
-            setTasks(tasks)
-            setTags(tags)
-        })
-        .catch(e => {
-            return navigate(welcomeNavigation.loginRoute)
-        })
-    }, [])
 
     function saveNewTask(newTask) {
-        handleDiscardNewTask()
-        setTasks(tasks => [newTask, ...tasks])
+        setIsCreatingNewTask(false)
+        addNewTask(newTask)
     }
 
-    function createNewTag(newTag) {
-        setTags(tags => [...tags, newTag])
-    }
-
-    function updateTag(updateTag) {
-        setTags(tags => tags.map(tag => {
-            if (tag._id === updateTag._id) {
-                return updateTag
-            }
-            return tag
-        }))
-    }
-
-    function deleteTag(tagId) {
-        setTags(tags => tags.filter(tag => tag._id !== tagId))
-    }
-
-
-    const handleAddNewTask = () => setIsCreatingNewTask(true)
-    const handleDiscardNewTask = () => setIsCreatingNewTask(false)
-    
-    const openEditForm = (data) => {
+    function openEditForm(data) {
         setEditFormData(data)
         setIsEditFormOpen(true)
     }
     
+    const handleAddNewTask = () => setIsCreatingNewTask(true)
+    const handleDiscardNewTask = () => setIsCreatingNewTask(false)
     const closeTaskForm = () => setIsEditFormOpen(false)
 
     
-    const {firstName, lastName, jobTitle, company, email, userIcon} = profileData
     return (
         <div>
             <SideBar
-                profileData={{firstName, lastName, jobTitle, company}}
+                user={user}
                 onAddNewTask={handleAddNewTask}
             />
             <Feed
-                profileData={{firstName}}
-                tasks={tasks}
-                tags={tags}
+                user={user}
+                tasks={user.tasks}
+                tags={user.tags}
                 creatingNewTask={isCreatingNewTask}
                 onDiscardNewTask={handleDiscardNewTask}
                 onSaveNewTask={saveNewTask}
-                onCreateNewTag={createNewTag}
+                onCreateNewTag={addNewTag}
                 onEditForm={openEditForm}
 
             />
@@ -98,8 +47,11 @@ function Home() {
                 isOpen={isEditFormOpen}
                 onCloseTaskForm={closeTaskForm}
                 data={editFormData}
+                tags={user.tags}
                 onUpdateTag={updateTag}
                 onDeleteTag={deleteTag}
+                onUpdateTask={updateTask}
+                onDeleteTask={deleteTask}
             />
         </div>
     );

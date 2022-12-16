@@ -5,7 +5,12 @@ import {
     createNewTaskAPI, 
     createNewTagAPI,
     updatingTagAPI,
-    deleteTagAPI
+    deleteTagAPI,
+    addTagToTaskAPI,
+    removeTagFromTaskAPI,
+    changeTaskStatusAPI,
+    updatingTaskAPI,
+    deleteTaskAPI
 } from './url'
 
 async function createResource(url, body) {
@@ -95,10 +100,74 @@ async function updateTag(tagId, tag) {
     }
 }
 
+async function updateTask(taskId, task) {
+    try {
+        return await axios({
+            url: updatingTaskAPI(taskId),
+            method: "patch",
+            data: task,
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
 async function deleteTag(tagId) {
     try {
         return await axios({
             url: deleteTagAPI(tagId),
+            method: "delete",
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
+async function addTagToTask(taskId, tagId) {
+    try {
+        return await axios({
+            url: addTagToTaskAPI(taskId),
+            method: "patch",
+            data: {"tagId": tagId},
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
+async function removeTagFromTask(taskId, tagId) {
+    try {
+        return await axios({
+            url: removeTagFromTaskAPI(taskId),
+            method: "patch",
+            data: {"tagId": tagId},
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
+async function changeTaskStatus(taskId, status) {
+    try {
+        return await axios({
+            url: changeTaskStatusAPI(taskId),
+            method: "patch",
+            data: { status },
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
+async function deleteTask(taskId) {
+    try {
+        return await axios({
+            url: deleteTaskAPI(taskId),
             method: "delete",
             withCredentials: true
         })
@@ -115,5 +184,10 @@ export {
     createNewTask,
     createNewTag,
     updateTag,
-    deleteTag
+    deleteTag,
+    addTagToTask,
+    removeTagFromTask,
+    changeTaskStatus,
+    updateTask,
+    deleteTask
 }

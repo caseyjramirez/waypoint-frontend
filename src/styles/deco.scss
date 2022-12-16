@@ -31,6 +31,12 @@
     color: $favorite-yellow;
 }
 
+.icon.favorite-star.title {
+    color: $black;
+    font-size: .75rem;
+    padding-bottom: .5rem;
+}
+
 .icon.comment {
     color: $text-grey;
     margin-top: .05rem;
@@ -68,12 +74,20 @@
     color: $dec-grey;
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 5px;
     transition: $transition-duration;
+    padding: 5px;
+    
+    border-radius: $border-radius;
+    width: 15px;
+    height: 15px;
     
     &:hover {
         color: $black;
+        background-color: $dec-grey;
     }
+
+
 }
 
 

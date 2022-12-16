@@ -6,6 +6,8 @@
 @import './home.scss';
 @import './error.scss';
 @import './taskCard.scss';
+@import './sidebar-button-group.scss';
+@import './button.scss';
 
 html {
     font-family: $font;
@@ -115,8 +117,16 @@ p.text-small {
     &.ai-end {
         align-items: end;
     }
+
+    &.ai-start {
+        align-items: start;
+    }
     &.ai-center {
         align-items: center;
+    }
+    
+    &.jc-center {
+        justify-content: center;
     }
 }
 
@@ -146,4 +156,8 @@ p.text-small {
 
 .editor-label {
     min-width: 60px;
+}
+
+.span100 {
+    width: 100%;
 }

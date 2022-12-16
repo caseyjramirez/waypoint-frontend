@@ -5,7 +5,7 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 function TagResult({ tag, onAddTag, currentTags, onEditTag }) {
     const edit = <FontAwesomeIcon icon={faEllipsis} className='icon tag-editor-icon' />
 
-    const exists = currentTags.find(currentTag => currentTag._id === tag._id)
+    const exists = currentTags.find(currentTag => currentTag === tag._id)
 
     
     function renderIsSelectedIndicator() {
@@ -14,14 +14,16 @@ function TagResult({ tag, onAddTag, currentTags, onEditTag }) {
     return (
         <div>
             <div className="task-tag-search-result">
-                <div className="flex-row-center task-tag-search-result-tag-container" onClick={() => onAddTag(tag)}>
+                <div className="flex-row-center task-tag-search-result-tag-container" onClick={() => onAddTag(tag._id)}>
                     {/* render indicator */}
                     {renderIsSelectedIndicator()}
 
                     {/* render tag */}
                     <Tag
-                        text={tag.tagTitle}
-                        color={tag.tagColor}
+                        data={{
+                            text: tag.tagTitle,
+                            color: tag.tagColor
+                        }}
                     />
                 </div>
                 <div onClick={() => onEditTag({type: "tag", ...tag})}>

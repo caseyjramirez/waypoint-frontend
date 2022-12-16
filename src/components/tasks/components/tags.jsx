@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { createNewTag } from '../../../services/services';
@@ -6,16 +6,26 @@ import TagResult from './tagResult';
 import Tag from './tag';
 import { tagColors } from '../../../styles/tagColors';
 
-function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEditTag, randomColorNumber }) {
+function Tags({ tags, taskTagIDs, addTaskTag, removeTaskTag, onCreateNewTag, onEditTag, randomColorNumber }) {
+
+    // console.log('task tags on the task level', taskTagIDs);
+    
     const plus = <FontAwesomeIcon icon={faPlus} className='icon add-tag' />
     const search = <FontAwesomeIcon icon={faMagnifyingGlass} className='icon tag-form-search' />
     const clear = <FontAwesomeIcon icon={faXmark} className='icon tag-form-clear' />
-
+    
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
+    const [taskTags, setTaskTags] = useState(taskTagIDs.map(id => tags.find(tag => tag._id === id)))
 
-    console.log('tags', tags);
-    console.log('task tags', taskTags);
+
+    
+    useEffect(() => {
+        setTaskTags(
+            taskTagIDs.map(id => tags.find(tag => tag._id === id))
+        )
+    }, [taskTagIDs, tags])
+
 
     function renderTagFormClass() {
         return isOpen ? 'tag-form active' : 'tag-form';
@@ -27,7 +37,9 @@ function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEdi
     }
 
     function renderSearchResults() {
-        return tags.filter(tag => tag.tagTitle.toLowerCase().includes(query.toLowerCase()))
+        return tags.filter(tag => {
+            return tag.tagTitle.toLowerCase().includes(query.toLowerCase())
+        })
     }
 
 
@@ -36,26 +48,32 @@ function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEdi
             renderSearchResults().map(tag => 
                 <TagResult
                     key={tag._id}
-                    currentTags={taskTags}
+                    currentTags={taskTagIDs}
                     tag={tag} 
                     onAddTag={addTaskTag}
                     onEditTag={onEditTag}
                 />)
         )
     }
-
+    
     function renderExistingTags() {
-        return taskTags.map(tag => { 
-            return (<div className='mr-10'>
-                <Tag 
-                    key={tag._id}
-                    text={tag.tagTitle} 
-                    color={tag.tagColor}
-                    removable={true}
-                    removeTag={() => removeTaskTag(tag)}
-                />
-            </div>
-        )})
+        return taskTags.map(tag => {
+            if (tag) {
+                return (<div className='mr-10'>
+                    <Tag 
+                        key={tag._id}
+                        data={{
+                            text: tag.tagTitle,
+                            color: tag.tagColor
+                        }}
+                        removable={true}
+                        removeTag={() => removeTaskTag(tag._id)}
+                    />
+                </div>)
+            } else {
+                return null
+            }
+        })
     }
 
     function createTagDisabled() {
@@ -79,15 +97,16 @@ function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEdi
         return 'tag-form-adder-container-creator mb-10'
     }
 
-    function createTag() {
+    async function createTag() {
         setQuery('')
         const newTag = {
-            tagColor: tagColors[randomColorNumber],
-            tagTitle: query
+            tagTitle: query,
+            tagColor: tagColors[randomColorNumber]
         }
         
-        createNewTag(newTag)
-        onCreateNewTag(newTag)
+        const response = await createNewTag(newTag)
+        addTaskTag(response.data)
+        onCreateNewTag({...newTag, _id: response.data})
     }
 
     return (
@@ -97,10 +116,12 @@ function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEdi
             </div>
  
             <div className='mr-10'>
+                {/* tag form open button */}
                 <button onClick={() => setIsOpen(true)} className="btn add-tag">{plus}</button>
                 
-                {/* being form */}
+                {/* tag form */}
                 <div className={renderTagFormClass()}>
+                    {/* tag form container */}
                     <div className='tag-form-adder-container'>
                         <div className='tag-form-adder-container-search-bar mb-5'>
                             <span className='my-10'>{search}</span>
@@ -119,14 +140,17 @@ function Tags({ tags, taskTags, addTaskTag, onCreateNewTag, removeTaskTag, onEdi
                         <button disabled={createTagDisabled()} onClick={createTag} className={createTagClasses()}>
                             <p className='my-10'>Create:</p>
                             <Tag
-                                text={query}
-                                color={tagColors[randomColorNumber]}
+                                data={{
+                                    text: query,
+                                    color: tagColors[randomColorNumber]
+                                }}
                             />
                         </button>
                     </div>
                 </div>
             </div>
 
+            {/* existing tags on a task */}
             <div className='tag-form-container-existing-tags'>
                 {renderExistingTags()}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StatusTag from '../reusables/statusTag';
 import DateTimeSelector from '../reusables/dateTimeSelector';
 import ActionTag from '../reusables/actionTag';
@@ -9,15 +9,19 @@ import { createNewTask } from '../../services/services';
 function NewTaskCard({onDiscardNewTask, onSaveNewTask, onCreateNewTag, onEditTag, tags}) {
     const randomColorNumber = Math.floor(Math.random() * 5);
 
-
     const [title, setTitle] = useState('') 
     const [description, setDescription] = useState('')
     const [status, setStatus] = useState('ready')
-    const [timeDue, setTimeDue] = useState('17:00')
-    const [dateDue, setDateDue] = useState(new Date().toJSON().substring(0, 10))
-    const [taskTags, setTaskTags] = useState([])
+    const [dueDate, setDueDate] = useState(null)
     const [titleError, setTitleError] = useState('')
     const [dueError, setDueError] = useState('')
+    const [taskTags, setTaskTags] = useState([])
+    
+    useEffect(() => {
+        const profileTagIDs = tags.map(tag => tag._id)
+        setTaskTags(tagIDs => tagIDs.filter(tagID => profileTagIDs.includes(tagID)))
+    }, [tags])
+
 
     function renderTitleClass() {
         return titleError ? 'title-input input-error' : 'title-input';
@@ -28,16 +32,17 @@ function NewTaskCard({onDiscardNewTask, onSaveNewTask, onCreateNewTag, onEditTag
         const unadjustedTime = new Date(time).getTime()
         const timeChange = new Date().getTimezoneOffset() * 60 * 1000
         const adjustedTime = unadjustedTime + timeChange 
-        return new Date(adjustedTime).toJSON()
+        return adjustedTime
     }
+
+    // console.log(new Date(dueDate), new Date(dueDate).getTimezoneOffset());
     
     function handleSaveNewTask() {
         setTitleError('')
         setDueError('')
-        const due = adjustForTimeChange(`${dateDue}T${timeDue}:00.000Z`);
         
         const { error } = validateTitle(title)
-        const timeError = validateTime(due)
+        const timeError = validateTime(dueDate)
 
         if(error || timeError) {
             if(error) {setTitleError(error.details[0].message)}
@@ -47,27 +52,22 @@ function NewTaskCard({onDiscardNewTask, onSaveNewTask, onCreateNewTag, onEditTag
             return
         }
 
-        const newTask = {
-            title, 
-            description, 
-            status, 
-            due,
-        }
-
+        const newTask = { title, description, status, due: new Date(dueDate).toUTCString(), tags: taskTags }
+        
         createNewTask(newTask)
         onSaveNewTask(newTask)
     }
 
-    function handleAddTaskTag(newTag) {
-        if(taskTags.find(currentTag => currentTag === newTag)) {
-            setTaskTags(tags => tags.filter(tag => tag !== newTag))
+    const handleAddTaskTag = newTagID => {
+        if(taskTags.find(currentTagID => currentTagID === newTagID)) {
+            setTaskTags(tags => tags.filter(tag => tag !== newTagID))
             return;
         }
-        setTaskTags(tags => [...tags, newTag])
+        setTaskTags(tagIDs => [...tagIDs, newTagID])
     }
     
-    function handleRemoveTaskTag(removeTag) {
-        setTaskTags(tags => tags.filter(tag => tag !== removeTag))
+    const handleRemoveTaskTag = removeTagID => {
+        setTaskTags(tags => tags.filter(tag => tag !== removeTagID))
     }
 
 
@@ -87,10 +87,8 @@ function NewTaskCard({onDiscardNewTask, onSaveNewTask, onCreateNewTag, onEditTag
                 
                 
                 <DateTimeSelector
-                    onTimeChange={setTimeDue}
-                    timeDue={timeDue}
-                    onDateChange={setDateDue}
-                    datedue={dateDue}
+                    onDueDateChange={setDueDate}
+                    dueDate={dueDate}
                     error={dueError}
                 />
                 
@@ -102,7 +100,7 @@ function NewTaskCard({onDiscardNewTask, onSaveNewTask, onCreateNewTag, onEditTag
                     
                     <Tags
                         tags={tags}
-                        taskTags={taskTags}
+                        taskTagIDs={taskTags}
                         onCreateNewTag={onCreateNewTag}
                         onEditTag={onEditTag}
                         addTaskTag={handleAddTaskTag}

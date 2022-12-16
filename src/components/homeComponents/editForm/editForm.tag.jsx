@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { faArrowLeft, } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, } from '@fortawesome/free-solid-svg-icons';
 import ActionTag from '../../reusables/actionTag';
 import { tagColorObjects } from '../../../styles/tagColors';
 import { updateTag, deleteTag } from '../../../services/services';
@@ -36,8 +36,8 @@ function TagEditForm({ data, onCloseTaskForm, onUpdateTag, onDeleteTag }) {
         }
 
         const updatedTag = {
-            tagColor: color,
-            tagTitle: title
+            tagTitle: title,
+            tagColor: color
         }
 
         updateTag(_id, updatedTag)
