@@ -54,6 +54,16 @@ function App() {
     })}))
   }
 
+  function onFavoriteTask(taskId) {
+    setUser(user => ({...user, tasks: user.tasks.map(task => {
+      if (task._id === taskId) {
+        return {...task, isFavorite: !task.isFavorite}
+      } else {
+        return task
+      }
+    })}))
+  }
+
   function deleteTag(tagId) {
     setUser(user => ({...user, tags: user.tags.filter(tag => tag._id !== tagId)}))
   }
@@ -76,6 +86,7 @@ function App() {
           deleteTag={deleteTag}
           updateTask={updateTask}
           deleteTask={deleteTask}
+          onFavoriteTask={onFavoriteTask}
         />}></Route>
       )
     }

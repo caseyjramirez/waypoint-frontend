@@ -35,6 +35,7 @@
     padding-left: $pm-space-lg;
     padding-right: $pm-space-lg;
     padding-top: 100px;
+    margin-bottom: 20px;
 
     .feed-header {
         position: fixed;
@@ -58,6 +59,11 @@
     .feed-content {
         padding-left: $pm-space-xxl;
         padding-right: $pm-space-xxl;
+    }
+
+    .feed-footer {
+        width: 100%;
+        height: 20px;
     }
 }
 

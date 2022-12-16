@@ -14,7 +14,22 @@ function Feed({
     onSaveNewTask, 
     onCreateNewTag, 
     onEditForm,
+    onFavoriteTask
 }) {
+
+    function renderTaskCard(task) {
+        return (
+            <TaskCard 
+                key={task._id} 
+                data={task}
+                tags={tags}
+                onCreateNewTag={onCreateNewTag}
+                onEditTag={onEditForm}
+                onEditTask={onEditForm}
+                onFavoriteTask={onFavoriteTask}
+            />
+        )
+    }
 
     function renderFeedConent() {
         return creatingNewTask ? (
@@ -26,34 +41,12 @@ function Feed({
                     onCreateNewTag={onCreateNewTag}
                     onEditTag={onEditForm}
                 />
-                {tasks.map(task => {
-                    return (
-                        <TaskCard 
-                            key={task._id} 
-                            data={task}
-                            tags={tags}
-                            onCreateNewTag={onCreateNewTag}
-                            onEditTag={onEditForm}
-                            onEditTask={onEditForm}
-                        />
-                    )
-                })}
+                {tasks.map(task => renderTaskCard(task))}
             
             </>
         ) : (
             <>
-                {tasks.map(task => {
-                    return (
-                        <TaskCard 
-                            key={task._id} 
-                            data={task} 
-                            tags={tags}
-                            onCreateNewTag={onCreateNewTag}
-                            onEditTag={onEditForm}
-                            onEditTask={onEditForm}
-                        />
-                    )
-                })}
+                {tasks.map(task => renderTaskCard(task))}
             </>
         ) ;
     }
@@ -74,6 +67,10 @@ function Feed({
                 />
 
                 {renderFeedConent()}
+            </div>
+
+            <div className="feed-footer">
+
             </div>
 
         </div>

@@ -11,6 +11,7 @@ const createNewTaskAPI = `${taskAPI}/new`
 const addTagToTaskAPI = taskId => `${taskAPI}/add_tag/${taskId}`
 const removeTagFromTaskAPI = taskId => `${taskAPI}/remove_tag/${taskId}`
 const changeTaskStatusAPI = taskId => `${taskAPI}/change_status/${taskId}`
+const changeTaskFavoriteAPI = taskId => `${taskAPI}/change_favorite/${taskId}`
 const deleteTaskAPI = taskId => `${taskAPI}/delete/${taskId}`
 
 const createNewTagAPI = `${tagAPI}/new`
@@ -31,5 +32,6 @@ export {
     removeTagFromTaskAPI,
     changeTaskStatusAPI,
     updatingTaskAPI,
-    deleteTaskAPI
+    deleteTaskAPI,
+    changeTaskFavoriteAPI
 }

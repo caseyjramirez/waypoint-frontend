@@ -8,7 +8,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { addTagToTask, removeTagFromTask, changeTaskStatus } from '../../services/services';
 
 
-function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTask }) { 
+function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTask, onFavoriteTask }) { 
     const randomColorNumber = Math.floor(Math.random() * 5);
     const edit = <FontAwesomeIcon icon={faPenToSquare} className='icon edit' />
     const {title, description, due, _id } = data
@@ -76,7 +76,10 @@ function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTas
 
                 <div className="mb-10 edit-button-container">
                     <button onClick={() => onEditTask({type: "task", ...data})} className="btn edit-btn">{edit}</button>
-                    <TaskDetails />
+                    <TaskDetails 
+                        data={data}
+                        onFavoriteTask={onFavoriteTask}
+                    />
                 </div>
             </div>
         </div>

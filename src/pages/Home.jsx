@@ -3,7 +3,7 @@ import SideBar from '../components/homeComponents/home.sidebar';
 import Feed from '../components/homeComponents/home.feed';
 import EditForm from '../components/homeComponents/editForm/home.editForm';
 
-function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, deleteTask }) {
+function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, deleteTask, onFavoriteTask }) {
     // const navigate = useNavigate();
 
     const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
@@ -40,7 +40,7 @@ function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, d
                 onSaveNewTask={saveNewTask}
                 onCreateNewTag={addNewTag}
                 onEditForm={openEditForm}
-
+                onFavoriteTask={onFavoriteTask}
             />
 
             <EditForm

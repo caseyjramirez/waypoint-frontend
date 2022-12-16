@@ -10,7 +10,8 @@ import {
     removeTagFromTaskAPI,
     changeTaskStatusAPI,
     updatingTaskAPI,
-    deleteTaskAPI
+    deleteTaskAPI,
+    changeTaskFavoriteAPI
 } from './url'
 
 async function createResource(url, body) {
@@ -164,6 +165,18 @@ async function changeTaskStatus(taskId, status) {
     }
 }
 
+async function changeTaskFavorite(taskId) {
+    try {
+        return await axios({
+            url: changeTaskFavoriteAPI(taskId),
+            method: "patch",
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
 async function deleteTask(taskId) {
     try {
         return await axios({
@@ -189,5 +202,6 @@ export {
     removeTagFromTask,
     changeTaskStatus,
     updateTask,
-    deleteTask
+    deleteTask,
+    changeTaskFavorite
 }
