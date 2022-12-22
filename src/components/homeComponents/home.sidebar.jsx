@@ -17,11 +17,6 @@ function SideBar({ user, onAddNewTask, viewing, setViewing }) {
                 viewing={viewing}
                 setViewing={setViewing}
             />
-
-            <SidebarTeamButtonGroup 
-                viewing={viewing}
-                setViewing={setViewing}
-            />
             
         </div>
     );

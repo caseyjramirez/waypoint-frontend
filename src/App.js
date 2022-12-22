@@ -120,12 +120,6 @@ function App() {
               handleDiscardNewTask={() => setIsCreatingNewTask(false)}
               isCreatingNewTask={isCreatingNewTask}
               viewing={viewing}
-          />}/>
-
-          <Route path="teams" element={
-            <Teams 
-              user={user}
-              viewing={viewing}
             />}/>
           </Route>
       )
