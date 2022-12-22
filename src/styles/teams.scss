@@ -1,0 +1,19 @@
+.teams {
+    width: calc(100vw - ($sidebar-width + 80px));
+    margin-left: calc($sidebar-width + $pm-space-lg + $pm-space-lg);
+    padding-left: $pm-space-lg;
+    padding-right: $pm-space-lg;
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+    &-feed {
+        padding-left: $pm-space-xxl;
+        padding-top: 40px;
+        position: relative;
+    }
+
+    &-feed-feed {
+        width: calc(100% - $pm-space-xxl);
+        border-top: 1px solid $black;
+    }
+}

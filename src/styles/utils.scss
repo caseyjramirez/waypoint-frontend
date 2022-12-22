@@ -82,6 +82,10 @@
     margin-right: $pm-space-xxl;
 }
 
+.ml-40 {
+    margin-left: $pm-space-xxl;
+}
+
 .px-10 {
     padding-top: $pm-space-lg;
     padding-bottom: $pm-space-lg;
@@ -122,6 +126,10 @@
     cursor: pointer;
     border-radius: $border-radius-sm;
     font-size: $p-font-size;
+
+    &.large {
+        padding: 2px 20px;
+    }
     
     &.add-tag {
         border: $border;

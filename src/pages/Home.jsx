@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import SideBar from '../components/homeComponents/home.sidebar';
+import React, { useState } from 'react';
 import Feed from '../components/homeComponents/home.feed';
 import EditForm from '../components/homeComponents/editForm/home.editForm';
 
-function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, deleteTask, onFavoriteTask }) {
-    // const navigate = useNavigate();
+function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, deleteTask, onFavoriteTask, setTaskStatus, handleDiscardNewTask, isCreatingNewTask, viewing }) {
 
-    const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
     const [isEditFormOpen, setIsEditFormOpen] = useState(false)
     const [editFormData, setEditFormData] = useState()
 
+
     function saveNewTask(newTask) {
-        setIsCreatingNewTask(false)
+        handleDiscardNewTask()
         addNewTask(newTask)
     }
 
@@ -20,27 +18,23 @@ function Home({ user, addNewTask, addNewTag, updateTag, deleteTag, updateTask, d
         setIsEditFormOpen(true)
     }
     
-    const handleAddNewTask = () => setIsCreatingNewTask(true)
-    const handleDiscardNewTask = () => setIsCreatingNewTask(false)
     const closeTaskForm = () => setIsEditFormOpen(false)
 
     
     return (
         <div>
-            <SideBar
-                user={user}
-                onAddNewTask={handleAddNewTask}
-            />
             <Feed
                 user={user}
                 tasks={user.tasks}
                 tags={user.tags}
+                viewing={viewing}
                 creatingNewTask={isCreatingNewTask}
                 onDiscardNewTask={handleDiscardNewTask}
                 onSaveNewTask={saveNewTask}
                 onCreateNewTag={addNewTag}
                 onEditForm={openEditForm}
                 onFavoriteTask={onFavoriteTask}
+                setStatus={setTaskStatus}
             />
 
             <EditForm

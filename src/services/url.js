@@ -3,6 +3,7 @@ const baseUrl = 'http://localhost:4200'
 const userAPI = `${baseUrl}/api/user`
 const taskAPI = `${baseUrl}/api/task`
 const tagAPI = `${baseUrl}/api/tag`
+const teamAPI = `${baseUrl}/api/team`
 
 const loginAPI = `${userAPI}/login`
 const getUserDataAPI = `${userAPI}/data`
@@ -19,6 +20,8 @@ const updatingTagAPI = tagId => `${tagAPI}/update/${tagId}`
 const updatingTaskAPI = taskId => `${taskAPI}/update/${taskId}`
 const deleteTagAPI = tagId => `${tagAPI}/delete/${tagId}`
 
+const createNewTeamAPI = `${teamAPI}`
+
 
 export {
     userAPI, 
@@ -33,5 +36,6 @@ export {
     changeTaskStatusAPI,
     updatingTaskAPI,
     deleteTaskAPI,
-    changeTaskFavoriteAPI
+    changeTaskFavoriteAPI,
+    createNewTeamAPI
 }

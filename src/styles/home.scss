@@ -34,7 +34,7 @@
     margin-left: calc($sidebar-width + $pm-space-lg + $pm-space-lg);
     padding-left: $pm-space-lg;
     padding-right: $pm-space-lg;
-    padding-top: 100px;
+    padding-top: 140px;
     margin-bottom: 20px;
 
     .feed-header {
@@ -43,16 +43,6 @@
         z-index: 999;
         top: 0;
         width: 100%;
-        
-        .bg-white {
-            background-color: $white;
-        }
-
-        .header-shadow {
-            height: 40px;
-            width: 100%;
-            background-image: linear-gradient($white, transparent);
-        }
 
     }
 
@@ -64,58 +54,6 @@
     .feed-footer {
         width: 100%;
         height: 20px;
-    }
-}
-
-.search-bar {
-    border-bottom: $border-thick;
-    padding-bottom: 5px;
-    color: $text-grey;
-    width: $searchbar-width;
-    transition: all $transition-duration;
-
-    &:focus-within {
-        border-bottom: $border-thick-black;
-        color: $black;
-        
-        input {
-            color: $black;
-        }
-    }
-
-    &-submit {
-        margin-right: 5px;
-    }
-
-    &-clear {
-        cursor: pointer;
-        margin-left: auto;
-        position: absolute;
-        right: 0;
-        transition: all .15s;
-    }
-
-    &-clear.hidden {
-        opacity: 0;
-    }
-
-    input {
-        font-family: $font;
-        font-weight: 700;
-        padding: 5px;
-        width: calc($searchbar-width - 4rem);
-        height: 7.5px;
-        color: $text-grey;
-        border: 0;
-        background-color: $white;
-
-        &:focus {
-            outline: none;
-        }
-
-        &:focus-within {
-            outline: none;
-        }
     }
 }
 
@@ -133,6 +71,20 @@
     top: $pm-space-xl;
     right: $pm-space-lg;
     cursor: pointer;
+}
+
+.btn.plus-button.teams-plus {
+    left: $pm-space-xxl
+}
+
+.bg-white {
+    background-color: $white;
+}
+
+.header-shadow {
+    height: 40px;
+    width: 100%;
+    background-image: linear-gradient($white, transparent);
 }
 
 /* 

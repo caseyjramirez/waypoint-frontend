@@ -1,0 +1,16 @@
+.search-bar {
+    margin-left: 40px;
+    margin-right: 40px;
+
+    input {
+        width: calc(100% - 320px);
+        padding: 5px 10px;
+        max-width: 800px;
+        border: $border-thick-xl;
+        border-radius: $border-radius;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

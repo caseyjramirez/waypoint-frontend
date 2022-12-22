@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { getUserData } from './services/services';
-import { welcomeNavigation } from './services/navigation'
+import { welcomeNavigation, homeNavigation, teamNavigation } from './services/navigation'
 import Welcome from './pages/Welcome'
 import NotFound from "./pages/NotFound";
 import LoginContent from "./components/welcomeComponents/loginSideBar";
 import SignupContent from "./components/welcomeComponents/signupSideBar";
 import Home from "./pages/Home";
+import Teams from './pages/Teams';
+import Authorized from './pages/Authorized';
 
 function App() {
   const navigate = useNavigate();
-
+  const { pathname } = useLocation();
+  
   const [user, setUser] = useState(null)
+  const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
+  const [viewing, setViewing] = useState(() => {
+    if(pathname === homeNavigation) {
+      return 'All Tasks'
+    }
+    else if(pathname === teamNavigation) {
+      return 'All Teams'
+    }
+  })
 
   useEffect(() => {
     getUserData().then(r => {
@@ -72,22 +84,50 @@ function App() {
     setUser(user => ({...user, tasks: user.tasks.filter(task => task._id !== taskId)}))
   }
 
+  function changeTaskStatus(taskId, status) {
+    setUser(user => ({...user, tasks: user.tasks.map(task => {
+      if (task._id === taskId) {
+        return {...task, status}
+      } else {
+        return task
+      }
+    })}))
+  }
+  
+
 
 
   function renderAuthorizedRoutes() {
     if(user) {
       return (
-        <Route path="/" element={
-          <Home 
+        <Route path="/" element={<Authorized 
           user={user}
-          addNewTag={addNewTag}
-          addNewTask={addNewTask}
-          updateTag={updateTag}
-          deleteTag={deleteTag}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-          onFavoriteTask={onFavoriteTask}
-        />}></Route>
+          handleAddNewTask={() => setIsCreatingNewTask(true)}
+          viewing={viewing}
+          setViewing={setViewing}
+        />} >
+          <Route path="" element={
+            <Home 
+              user={user}
+              addNewTag={addNewTag}
+              addNewTask={addNewTask}
+              updateTag={updateTag}
+              deleteTag={deleteTag}
+              updateTask={updateTask}
+              deleteTask={deleteTask}
+              onFavoriteTask={onFavoriteTask}
+              setTaskStatus={changeTaskStatus}
+              handleDiscardNewTask={() => setIsCreatingNewTask(false)}
+              isCreatingNewTask={isCreatingNewTask}
+              viewing={viewing}
+          />}/>
+
+          <Route path="teams" element={
+            <Teams 
+              user={user}
+              viewing={viewing}
+            />}/>
+          </Route>
       )
     }
   }
@@ -96,8 +136,8 @@ function App() {
     <div>
         <Routes>
           <Route path="/welcome" element={<Welcome />}>
-            <Route path="" element={<LoginContent />}></Route>
-            <Route path="signup/*" element={<SignupContent />}></Route>
+            <Route path="" element={<LoginContent setUser={setUser} />}></Route>
+            <Route path="signup/*" element={<SignupContent setUser={setUser} />}></Route>
           </Route>
           <Route path="*" element={<NotFound />}></Route>
           {renderAuthorizedRoutes()}

@@ -11,7 +11,8 @@ import {
     changeTaskStatusAPI,
     updatingTaskAPI,
     deleteTaskAPI,
-    changeTaskFavoriteAPI
+    changeTaskFavoriteAPI,
+    createNewTeamAPI
 } from './url'
 
 async function createResource(url, body) {
@@ -189,6 +190,19 @@ async function deleteTask(taskId) {
     }
 }
 
+async function createTeam(body) {
+    try {
+        return await axios({
+            url: createNewTeamAPI,
+            method: "post",
+            data: body,
+            withCredentials: true
+        })
+    } catch (e) {
+        return e
+    }
+}
+
 export {
     createResource, 
     getResource, 
@@ -203,5 +217,6 @@ export {
     changeTaskStatus,
     updateTask,
     deleteTask,
-    changeTaskFavorite
+    changeTaskFavorite,
+    createTeam
 }

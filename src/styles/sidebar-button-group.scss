@@ -4,3 +4,24 @@
     padding: 10px;
     width: calc(100% - 20px);
 }
+
+.teams-sidebar-button-group {
+    border-radius: $border-radius;
+    border: $border;
+    padding: 10px;
+    width: calc(100% - 20px);
+
+    &-all {
+        background-color: transparent;
+        padding: 5px 10px;
+        width: calc(100% - 20px);
+        border-radius: $border-radius;
+        border: none;
+
+        &.selected {
+            background-color: $light-blue;
+            border: $border-blue;
+        }
+    }
+}
+

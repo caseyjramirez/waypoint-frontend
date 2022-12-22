@@ -8,13 +8,12 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { addTagToTask, removeTagFromTask, changeTaskStatus } from '../../services/services';
 
 
-function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTask, onFavoriteTask }) { 
+function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTask, onFavoriteTask, setStatus }) { 
     const randomColorNumber = Math.floor(Math.random() * 5);
     const edit = <FontAwesomeIcon icon={faPenToSquare} className='icon edit' />
     const {title, description, due, _id } = data
     
     const [taskTags, setTaskTags] = useState(data.tags)
-    const [status, setStatus] = useState(data.status)
 
     useEffect(() => {
         const profileTagIDs = tags.map(tag => tag._id)
@@ -38,7 +37,7 @@ function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTas
 
     const handleStatusChange = status => {
         changeTaskStatus(_id, status)
-        setStatus(status);
+        setStatus(_id, status);
     }
     
     return (
@@ -51,7 +50,7 @@ function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTas
 
                 <div className="flex-row space-between">
 
-                        <h2 className="mb-10 mr-10">{title}</h2>
+                    <h2 className="mb-10 mr-10">{title}</h2>
                     <p className="bold">{renderDate(due)}</p>
                 </div>
 
@@ -59,7 +58,7 @@ function TaskCard({ data, raiseClick, tags, onCreateNewTag, onEditTag, onEditTas
 
                 <div className="tags">
                     <StatusTag
-                        status={status}
+                        status={data.status}
                         onSatusChange={handleStatusChange}
                     />
 

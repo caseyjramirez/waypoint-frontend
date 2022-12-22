@@ -9,7 +9,7 @@ import YourselfContent from "./sign-up/yourselfContent";
 import JobContent from "./sign-up/jobContent";
 import LoginContent from "./sign-up/infoContent";
 
-function SignupContent() {
+function SignupContent({ setUser }) {
     const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('');
@@ -53,6 +53,8 @@ function SignupContent() {
         const data = await createResource(userAPI, newUser)
 
         if(data.response) return setServerError(data.response.data);
+
+        setUser(data.data)
         navigate(homeNavigation)
     }
 
@@ -63,37 +65,37 @@ function SignupContent() {
             <Routes>
                 <Route path='/' element={
                     <YourselfContent
-                    firstName={firstName}
-                    lastName={lastName}
-                    handleFirstNameChange={(e) => setFirstName(e.target.value)}
-                    handleLastNameChang={(e) => setLastName(e.target.value)}
+                        firstName={firstName}
+                        lastName={lastName}
+                        handleFirstNameChange={(e) => setFirstName(e.target.value)}
+                        handleLastNameChang={(e) => setLastName(e.target.value)}
                     />
                 }>
                 </Route>
 
                 <Route path='job' element={
                     <JobContent
-                    jobTitle={jobTitle}
-                    company={company}
-                    handleJobTitleChange={(e) => setJobTitle(e.target.value)}
-                    handleCompanyChange={(e) => setCompany(e.target.value)}
+                        jobTitle={jobTitle}
+                        company={company}
+                        handleJobTitleChange={(e) => setJobTitle(e.target.value)}
+                        handleCompanyChange={(e) => setCompany(e.target.value)}
                     />
                 }>
                 </Route>
 
                 <Route path='info' element={
                     <LoginContent
-                    email={email}
-                    password={password}
-                    confirmPassword={confirmPassword}
-                    handleEmailChange={(e) => setEmail(e.target.value)}
-                    handlePasswordChange={(e) => setPassword(e.target.value)}
-                    handleConfirmPasswordChange={(e) => setConfirmPassword(e.target.value)}
-                    handleSubmit={handleSubmit}
-                    emailError={emailError}
-                    passwordError={passwordError}
-                    confirmPasswordError={confirmPasswordError}
-                    serverError={serverError}
+                        email={email}
+                        password={password}
+                        confirmPassword={confirmPassword}
+                        handleEmailChange={(e) => setEmail(e.target.value)}
+                        handlePasswordChange={(e) => setPassword(e.target.value)}
+                        handleConfirmPasswordChange={(e) => setConfirmPassword(e.target.value)}
+                        handleSubmit={handleSubmit}
+                        emailError={emailError}
+                        passwordError={passwordError}
+                        confirmPasswordError={confirmPasswordError}
+                        serverError={serverError}
                     />
                 }>
                 </Route>

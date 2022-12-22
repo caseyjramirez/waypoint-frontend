@@ -9,5 +9,6 @@ const welcomeNavigation = {
 }
 
 const homeNavigation = '/'
+const teamNavigation = '/teams'
 
-export {welcomeNavigation, homeNavigation}
+export {welcomeNavigation, homeNavigation, teamNavigation}

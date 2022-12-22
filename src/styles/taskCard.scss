@@ -84,9 +84,9 @@
     textarea {
         background-color: $cream;
         font-family: $font;
+        color: $black;
         border: none;
         height: 60px;
-        color: $black;
         width: calc(100% - $pm-space-xxl);
         resize: none;
 
@@ -259,7 +259,6 @@
     &:hover {
         button {
             display: block;
-
         }
     }
 

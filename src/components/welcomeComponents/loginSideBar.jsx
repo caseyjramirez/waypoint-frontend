@@ -6,7 +6,7 @@ import FormInput from "../forms/formInput";
 import ServerError from "../forms/serverError";
 import WelcomeHeader from "./welcomeHeader";
 
-function LoginContent() {
+function LoginContent({setUser}) {
     const navigate = useNavigate();
     
     const [email, setEmail] = useState('')
@@ -19,7 +19,10 @@ function LoginContent() {
 
         const userLogin = {email, password}
         const data = await loginService(userLogin)
+        
         if(data.response) return setServerError('Invalid Email or Password.');
+        
+        setUser(data.data);
         navigate(homeNavigation)
     }
 
